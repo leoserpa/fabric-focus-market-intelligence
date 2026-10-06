@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Lakehouse",
+    "displayName": "lk_focus_intelligence"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "ba17ffbc-dcc4-8d2a-4b47-b4690e608777"
+  }
+}
