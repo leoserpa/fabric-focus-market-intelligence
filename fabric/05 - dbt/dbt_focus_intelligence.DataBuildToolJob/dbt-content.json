@@ -3,9 +3,25 @@
     "projectType": "OneLake",
     "folderPath": "dbt"
   },
+  "profile": {
+    "profileType": "DataWarehouse",
+    "schema": "dbo",
+    "connectionSettings": {
+      "name": "wh_focus_intelligence",
+      "properties": {
+        "type": "DataWarehouse",
+        "typeProperties": {
+          "workspaceId": "217c128f-7b83-4127-989b-4052ea6fff03",
+          "artifactId": "8751aaf2-d8d8-403d-90cd-5f78cd9d37ec",
+          "endPoint": "kmyy5wxrqxie5lvlcy5yop5lqu-r4jhyimdpmtudge3ibjou377am.datawarehouse.fabric.microsoft.com"
+        }
+      }
+    }
+  },
   "command": {
     "operation": "build",
     "arguments": {
+      "exclude": "",
       "threads": 4
     }
   }

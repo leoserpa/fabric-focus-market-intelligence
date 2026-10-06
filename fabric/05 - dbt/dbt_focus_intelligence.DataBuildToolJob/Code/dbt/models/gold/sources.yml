@@ -1,0 +1,53 @@
+version: 2
+
+sources:
+  - name: lakehouse_silver
+    description: "Tabelas curadas, tipadas e deduplicadas (Silver) geradas pelo nb_02 no Lakehouse lh_focus_intelligence"
+    database: lk_focus_intelligence
+    schema: dbo
+    tables:
+      - name: silver_focus_anuais
+        description: "Expectativas de mercado anuais limpas e deduplicadas (IPCA, Selic, Câmbio, PIB Total)"
+        columns:
+          - name: data
+            description: "Data da observação"
+          - name: indicador
+            description: "Indicador econômico"
+          - name: ano_referencia
+            description: "Ano projetado"
+          - name: base_calculo
+            description: "Base de cálculo (0 = 30 dias corridos, 1 = 5 dias úteis)"
+          - name: mediana
+            description: "Mediana das projeções"
+
+      - name: silver_focus_top5_anuais
+        description: "Expectativas anuais do grupo Top 5 (IPCA, Selic, Câmbio)"
+        columns:
+          - name: data
+            description: "Data da projeção"
+          - name: indicador
+            description: "Indicador econômico"
+          - name: ano_referencia
+            description: "Ano projetado"
+          - name: tipo_calculo
+            description: "Tipo de cálculo (C = Curto Prazo)"
+          - name: mediana
+            description: "Mediana do Top 5"
+
+      - name: silver_focus_inflacao_12m
+        description: "Expectativa de inflação IPCA 12 meses suavizada"
+        columns:
+          - name: data
+            description: "Data da observação"
+          - name: indicador
+            description: "Indicador (IPCA)"
+          - name: mediana
+            description: "Mediana da inflação esperada para 12 meses"
+
+      - name: silver_sgs_selic_meta
+        description: "Série histórica diária do SGS (432) com a Selic Meta oficial do COPOM"
+        columns:
+          - name: data
+            description: "Data de vigência"
+          - name: taxa_selic_meta_aa
+            description: "Taxa Selic Meta anualizada (% a.a.)"

@@ -1,0 +1,113 @@
+version: 2
+
+models:
+  - name: dim_calendario
+    description: "Dimensão de tempo contínua (2000 a 2035) com atributos de calendário e dias úteis"
+    columns:
+      - name: data_sk
+        description: "Chave primária numérica (formato yyyyMMdd)"
+        tests:
+          - unique
+          - not_null
+      - name: data
+        description: "Data em formato DATE"
+        tests:
+          - unique
+          - not_null
+      - name: ano
+        description: "Ano civil"
+        tests:
+          - not_null
+
+  - name: dim_indicador
+    description: "Dimensão de referência com metadados dos indicadores macroeconômicos"
+    columns:
+      - name: indicador_id
+        description: "Chave primária do indicador"
+        tests:
+          - unique
+          - not_null
+      - name: indicador
+        description: "Nome do indicador"
+        tests:
+          - unique
+          - not_null
+      - name: unidade_medida
+        description: "Unidade de medida (% a.a. ou R$/US$)"
+        tests:
+          - not_null
+
+  - name: fct_expectativas_mercado
+    description: "Tabela fato de expectativas do mercado com métricas estatísticas e dispersão (spread)"
+    columns:
+      - name: data_sk
+        description: "Chave estrangeira para dim_calendario"
+        tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('dim_calendario')
+                field: data_sk
+      - name: data
+        tests:
+          - not_null
+      - name: indicador
+        tests:
+          - not_null
+      - name: ano_referencia
+        tests:
+          - not_null
+      - name: mediana
+        tests:
+          - not_null
+
+  - name: fct_comparativo_top5
+    description: "Tabela fato comparando a projeção do Consenso Geral com a do Top 5 e divergência calculada"
+    columns:
+      - name: data_sk
+        description: "Chave estrangeira para dim_calendario"
+        tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('dim_calendario')
+                field: data_sk
+      - name: data
+        tests:
+          - not_null
+      - name: indicador
+        tests:
+          - not_null
+      - name: ano_referencia
+        tests:
+          - not_null
+      - name: mediana_mercado
+        tests:
+          - not_null
+      - name: mediana_top5
+        tests:
+          - not_null
+
+  - name: fct_juro_real_ex_ante
+    description: "Tabela fato com a taxa de juro real ex-ante calculada pela Equação de Fisher"
+    columns:
+      - name: data_sk
+        description: "Chave estrangeira para dim_calendario"
+        tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('dim_calendario')
+                field: data_sk
+      - name: data
+        tests:
+          - not_null
+      - name: taxa_selic_meta_aa
+        tests:
+          - not_null
+      - name: ipca_esperado_12m
+        tests:
+          - not_null
+      - name: taxa_juro_real_ex_ante
+        tests:
+          - not_null
