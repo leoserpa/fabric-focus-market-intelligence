@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "DataBuildToolJob",
+    "displayName": "dbt_focus_intelligence"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "b6a05239-ce78-9901-4d44-db374d4cd78d"
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "project": {
+    "projectType": "OneLake",
+    "folderPath": "dbt"
+  },
+  "command": {
+    "operation": "build",
+    "arguments": {
+      "threads": 4
+    }
+  }
+}

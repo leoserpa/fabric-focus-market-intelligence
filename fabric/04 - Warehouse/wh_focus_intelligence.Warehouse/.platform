@@ -1,0 +1,12 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Warehouse",
+    "displayName": "wh_focus_intelligence",
+    "description": ""
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "cd9d37ec-5f78-90cd-403d-d8d88751aaf2"
+  }
+}
