@@ -1,0 +1,73 @@
+{
+  "properties": {
+    "activities": [
+      {
+        "type": "TridentNotebook",
+        "typeProperties": {
+          "notebookId": "b68183be-00c0-9da7-4eb7-f6413bf15152",
+          "workspaceId": "00000000-0000-0000-0000-000000000000"
+        },
+        "policy": {
+          "timeout": "0.12:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureInput": false,
+          "secureOutput": false
+        },
+        "name": "ingestao_bronze_bcb",
+        "dependsOn": []
+      },
+      {
+        "type": "TridentNotebook",
+        "typeProperties": {
+          "notebookId": "d9f262ca-4a82-ba4b-4055-3c969d2ffa5f",
+          "workspaceId": "00000000-0000-0000-0000-000000000000"
+        },
+        "policy": {
+          "timeout": "0.12:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureInput": false,
+          "secureOutput": false
+        },
+        "name": "curacao_silver_delta",
+        "dependsOn": [
+          {
+            "activity": "ingestao_bronze_bcb",
+            "dependencyConditions": [
+              "Succeeded"
+            ]
+          }
+        ]
+      },
+      {
+        "type": "InvokeDataBuildToolJob",
+        "typeProperties": {
+          "dataBuildToolJobId": "b6a05239-ce78-9901-4d44-db374d4cd78d",
+          "workspaceId": "00000000-0000-0000-0000-000000000000",
+          "threads": 4,
+          "operation": "build"
+        },
+        "externalReferences": {
+          "connection": "32ac44f4-1139-4852-b889-a95a97248aa8"
+        },
+        "policy": {
+          "timeout": "0.12:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureInput": false,
+          "secureOutput": false
+        },
+        "name": "modelagem_gold_dbt",
+        "dependsOn": [
+          {
+            "activity": "curacao_silver_delta",
+            "dependencyConditions": [
+              "Succeeded"
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}
