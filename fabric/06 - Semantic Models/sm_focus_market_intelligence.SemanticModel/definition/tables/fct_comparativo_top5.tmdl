@@ -1,0 +1,185 @@
+table fct_comparativo_top5
+	lineageTag: 70b664e9-3d3c-40d0-a8bf-f34ce273345f
+	sourceLineageTag: [dbo_gold].[fct_comparativo_top5]
+
+	column data_sk
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: b1e4010c-0555-4c7d-98ca-6d7830668f60
+		sourceLineageTag: data_sk
+		summarizeBy: none
+		sourceColumn: data_sk
+
+		annotation SummarizationSetBy = Automatic
+
+	column data
+		dataType: dateTime
+		formatString: General Date
+		sourceProviderType: date
+		lineageTag: adc7af3f-6ae2-4ae3-ac7d-74a995a8fa1a
+		sourceLineageTag: data
+		summarizeBy: none
+		sourceColumn: data
+
+		annotation SummarizationSetBy = Automatic
+
+	column indicador
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: cc42df56-bdb6-4298-9f16-46275b7df8c7
+		sourceLineageTag: indicador
+		summarizeBy: none
+		sourceColumn: indicador
+
+		annotation SummarizationSetBy = Automatic
+
+	column ano_referencia
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: 3474a27e-12c5-4753-9521-25654471bb8b
+		sourceLineageTag: ano_referencia
+		summarizeBy: sum
+		sourceColumn: ano_referencia
+
+		annotation SummarizationSetBy = Automatic
+
+	column mediana_mercado
+		dataType: double
+		sourceProviderType: float
+		lineageTag: fcd502c7-f068-4deb-9b84-e53e213092e5
+		sourceLineageTag: mediana_mercado
+		summarizeBy: sum
+		sourceColumn: mediana_mercado
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column mediana_top5
+		dataType: double
+		sourceProviderType: float
+		lineageTag: 5058f8b0-92a3-42d7-9333-f147683ec0d9
+		sourceLineageTag: mediana_top5
+		summarizeBy: sum
+		sourceColumn: mediana_top5
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column divergencia_top5_mercado
+		dataType: double
+		sourceProviderType: float
+		lineageTag: 8b74d049-b23c-4981-a512-d8df6f48922a
+		sourceLineageTag: divergencia_top5_mercado
+		summarizeBy: sum
+		sourceColumn: divergencia_top5_mercado
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column desvio_padrao_mercado
+		dataType: double
+		sourceProviderType: float
+		lineageTag: d8d5eed2-9d03-4687-912c-1243a878bbb8
+		sourceLineageTag: desvio_padrao_mercado
+		summarizeBy: sum
+		sourceColumn: desvio_padrao_mercado
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column desvio_padrao_top5
+		dataType: double
+		sourceProviderType: float
+		lineageTag: dbd73044-516c-4b8e-9b45-dc986bfcfff9
+		sourceLineageTag: desvio_padrao_top5
+		summarizeBy: sum
+		sourceColumn: desvio_padrao_top5
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column minimo_mercado
+		dataType: double
+		sourceProviderType: float
+		lineageTag: b671ff20-095a-4782-8a70-eab8b8eae927
+		sourceLineageTag: minimo_mercado
+		summarizeBy: sum
+		sourceColumn: minimo_mercado
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column maximo_mercado
+		dataType: double
+		sourceProviderType: float
+		lineageTag: 6e343b69-8f79-4907-a58e-8e94b009a577
+		sourceLineageTag: maximo_mercado
+		summarizeBy: sum
+		sourceColumn: maximo_mercado
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column minimo_top5
+		dataType: double
+		sourceProviderType: float
+		lineageTag: 97169119-342c-4990-abd4-6af0ec1b760c
+		sourceLineageTag: minimo_top5
+		summarizeBy: sum
+		sourceColumn: minimo_top5
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column maximo_top5
+		dataType: double
+		sourceProviderType: float
+		lineageTag: e1b88f64-249c-4abc-85d5-340e50953985
+		sourceLineageTag: maximo_top5
+		summarizeBy: sum
+		sourceColumn: maximo_top5
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column numero_respondentes
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: 21ce460f-a766-4640-9d18-64d22aac7ae3
+		sourceLineageTag: numero_respondentes
+		summarizeBy: sum
+		sourceColumn: numero_respondentes
+
+		annotation SummarizationSetBy = Automatic
+
+	column sinal_posicionamento
+		dataType: string
+		sourceProviderType: varchar(40)
+		lineageTag: f5c63bc1-1b90-48e8-9b90-36b16e73b2f0
+		sourceLineageTag: sinal_posicionamento
+		summarizeBy: none
+		sourceColumn: sinal_posicionamento
+
+		annotation SummarizationSetBy = Automatic
+
+	partition fct_comparativo_top5 = entity
+		mode: directLake
+		source
+			entityName: fct_comparativo_top5
+			schemaName: dbo_gold
+			expressionSource: DatabaseQuery
+
+	annotation PBI_ResultType = Table
+

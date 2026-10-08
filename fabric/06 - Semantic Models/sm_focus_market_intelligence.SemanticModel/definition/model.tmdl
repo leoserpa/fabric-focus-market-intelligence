@@ -1,0 +1,22 @@
+model Model
+	culture: en-US
+	collation: Latin1_General_100_BIN2_UTF8
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: en-US
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation __PBI_TimeIntelligenceEnabled = 0
+
+annotation PBI_QueryOrder = ["DatabaseQuery"]
+
+annotation PBI_ProTooling = ["WebModelingEdit"]
+
+ref table dim_calendario
+ref table dim_indicador
+ref table fct_expectativas_mercado
+ref table fct_juro_real_ex_ante
+ref table fct_comparativo_top5
+ref table _Medidas
+

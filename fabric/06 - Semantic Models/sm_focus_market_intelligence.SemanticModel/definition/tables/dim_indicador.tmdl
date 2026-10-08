@@ -1,0 +1,64 @@
+table dim_indicador
+	lineageTag: f5c52f83-810f-43ab-9aa7-e46b003b2728
+	sourceLineageTag: [dbo_gold].[dim_indicador]
+
+	column indicador_id
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: a17a4922-164c-4838-a509-661a13b5be2c
+		sourceLineageTag: indicador_id
+		summarizeBy: sum
+		sourceColumn: indicador_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column indicador
+		dataType: string
+		sourceProviderType: varchar(18)
+		lineageTag: ea658578-dab6-45ac-b151-4d5c385e0bc6
+		sourceLineageTag: indicador
+		summarizeBy: none
+		sourceColumn: indicador
+
+		annotation SummarizationSetBy = Automatic
+
+	column unidade_medida
+		dataType: string
+		sourceProviderType: varchar(6)
+		lineageTag: b585a8cc-a2e6-4b98-a330-ace82991635c
+		sourceLineageTag: unidade_medida
+		summarizeBy: none
+		sourceColumn: unidade_medida
+
+		annotation SummarizationSetBy = Automatic
+
+	column periodicidade
+		dataType: string
+		sourceProviderType: varchar(8)
+		lineageTag: 10a1413c-988e-4e5c-89c9-cdfc5f9716a5
+		sourceLineageTag: periodicidade
+		summarizeBy: none
+		sourceColumn: periodicidade
+
+		annotation SummarizationSetBy = Automatic
+
+	column descricao
+		dataType: string
+		sourceProviderType: varchar(98)
+		lineageTag: 158463a4-17dd-4af0-a717-6a799b860bc2
+		sourceLineageTag: descricao
+		summarizeBy: none
+		sourceColumn: descricao
+
+		annotation SummarizationSetBy = Automatic
+
+	partition dim_indicador = entity
+		mode: directLake
+		source
+			entityName: dim_indicador
+			schemaName: dbo_gold
+			expressionSource: DatabaseQuery
+
+	annotation PBI_ResultType = Table
+

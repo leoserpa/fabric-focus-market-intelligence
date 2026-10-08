@@ -1,0 +1,83 @@
+table fct_juro_real_ex_ante
+	lineageTag: fc9c1166-895c-4ba8-bca4-0198a8d64b36
+	sourceLineageTag: [dbo_gold].[fct_juro_real_ex_ante]
+
+	column data_sk
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: 5adffbd2-e109-4bb5-be1b-08f57dbb44c2
+		sourceLineageTag: data_sk
+		summarizeBy: none
+		sourceColumn: data_sk
+
+		annotation SummarizationSetBy = Automatic
+
+	column data
+		dataType: dateTime
+		formatString: General Date
+		sourceProviderType: date
+		lineageTag: d16dcc5a-828a-4a5a-a46d-f627c4fe7840
+		sourceLineageTag: data
+		summarizeBy: none
+		sourceColumn: data
+
+		annotation SummarizationSetBy = Automatic
+
+	column taxa_selic_meta_aa
+		dataType: double
+		sourceProviderType: float
+		lineageTag: 97b22bd9-bcd0-4268-a13b-2d9487ca65e4
+		sourceLineageTag: taxa_selic_meta_aa
+		summarizeBy: sum
+		sourceColumn: taxa_selic_meta_aa
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column ipca_esperado_12m
+		dataType: double
+		sourceProviderType: float
+		lineageTag: 60ee0e46-ebae-4678-beec-75b110241e3a
+		sourceLineageTag: ipca_esperado_12m
+		summarizeBy: sum
+		sourceColumn: ipca_esperado_12m
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column desvio_padrao_ipca_12m
+		dataType: double
+		sourceProviderType: float
+		lineageTag: ac407154-3a3a-4e86-8948-86b25be1ef03
+		sourceLineageTag: desvio_padrao_ipca_12m
+		summarizeBy: sum
+		sourceColumn: desvio_padrao_ipca_12m
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column taxa_juro_real_ex_ante
+		dataType: double
+		sourceProviderType: float
+		lineageTag: 6f59e2d6-61b5-4322-836e-e37d2dc2edfe
+		sourceLineageTag: taxa_juro_real_ex_ante
+		summarizeBy: sum
+		sourceColumn: taxa_juro_real_ex_ante
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition fct_juro_real_ex_ante = entity
+		mode: directLake
+		source
+			entityName: fct_juro_real_ex_ante
+			schemaName: dbo_gold
+			expressionSource: DatabaseQuery
+
+	annotation PBI_ResultType = Table
+

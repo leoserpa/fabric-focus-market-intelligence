@@ -1,0 +1,170 @@
+table fct_expectativas_mercado
+	lineageTag: ea48ae96-4c24-4008-8fd8-4c7b743c074c
+	sourceLineageTag: [dbo_gold].[fct_expectativas_mercado]
+
+	column data_sk
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: d6ef52db-e90a-4363-aefa-62cff3c5737e
+		sourceLineageTag: data_sk
+		summarizeBy: none
+		sourceColumn: data_sk
+
+		annotation SummarizationSetBy = Automatic
+
+	column data
+		dataType: dateTime
+		formatString: General Date
+		sourceProviderType: date
+		lineageTag: 21de955e-0c35-40d7-846f-26067102b175
+		sourceLineageTag: data
+		summarizeBy: none
+		sourceColumn: data
+
+		annotation SummarizationSetBy = Automatic
+
+	column indicador
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 2c2f5db4-23f9-4cb5-8b91-44eec39f19ea
+		sourceLineageTag: indicador
+		summarizeBy: none
+		sourceColumn: indicador
+
+		annotation SummarizationSetBy = Automatic
+
+	column indicador_detalhe
+		dataType: string
+		sourceProviderType: varchar(50)
+		lineageTag: 84674dd2-7667-40df-96b9-99b2398943c5
+		sourceLineageTag: indicador_detalhe
+		summarizeBy: none
+		sourceColumn: indicador_detalhe
+
+		annotation SummarizationSetBy = Automatic
+
+	column ano_referencia
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: 2ad27b35-be20-44c8-a3d7-4d114c1b3adc
+		sourceLineageTag: ano_referencia
+		summarizeBy: sum
+		sourceColumn: ano_referencia
+
+		annotation SummarizationSetBy = Automatic
+
+	column base_calculo
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: f0db8359-f92b-405b-a311-b3d97888235f
+		sourceLineageTag: base_calculo
+		summarizeBy: sum
+		sourceColumn: base_calculo
+
+		annotation SummarizationSetBy = Automatic
+
+	column base_calculo_desc
+		dataType: string
+		sourceProviderType: varchar(30)
+		lineageTag: 70a61e99-084f-45ae-8151-65f4283c5829
+		sourceLineageTag: base_calculo_desc
+		summarizeBy: none
+		sourceColumn: base_calculo_desc
+
+		annotation SummarizationSetBy = Automatic
+
+	column media
+		dataType: double
+		sourceProviderType: float
+		lineageTag: 5d81bcee-1fe6-4d1c-9b94-640e71552e1c
+		sourceLineageTag: media
+		summarizeBy: sum
+		sourceColumn: media
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column mediana
+		dataType: double
+		sourceProviderType: float
+		lineageTag: dc4ba788-83d9-48d7-b474-03207b497020
+		sourceLineageTag: mediana
+		summarizeBy: sum
+		sourceColumn: mediana
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column desvio_padrao
+		dataType: double
+		sourceProviderType: float
+		lineageTag: 4fac59c8-3954-4818-9e07-0881c15224df
+		sourceLineageTag: desvio_padrao
+		summarizeBy: sum
+		sourceColumn: desvio_padrao
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column minimo
+		dataType: double
+		sourceProviderType: float
+		lineageTag: 3445093d-3dc2-49c7-b1e4-2f6d54a70142
+		sourceLineageTag: minimo
+		summarizeBy: sum
+		sourceColumn: minimo
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column maximo
+		dataType: double
+		sourceProviderType: float
+		lineageTag: ea6c43d0-fffd-44b1-94a8-79d9142d31c8
+		sourceLineageTag: maximo
+		summarizeBy: sum
+		sourceColumn: maximo
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column spread_min_max
+		dataType: double
+		sourceProviderType: float
+		lineageTag: 05c6c413-a5a3-40c7-8daf-e70aa5905df3
+		sourceLineageTag: spread_min_max
+		summarizeBy: sum
+		sourceColumn: spread_min_max
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column numero_respondentes
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: 73480eee-9de0-4996-9881-7f4114013039
+		sourceLineageTag: numero_respondentes
+		summarizeBy: sum
+		sourceColumn: numero_respondentes
+
+		annotation SummarizationSetBy = Automatic
+
+	partition fct_expectativas_mercado = entity
+		mode: directLake
+		source
+			entityName: fct_expectativas_mercado
+			schemaName: dbo_gold
+			expressionSource: DatabaseQuery
+
+	annotation PBI_ResultType = Table
+

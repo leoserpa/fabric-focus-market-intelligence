@@ -1,0 +1,62 @@
+table _Medidas
+	lineageTag: ca0ce85e-e0c2-4ae6-a3cc-890f9a423fb0
+
+	measure 'Mediana Mercado' = ```
+			AVERAGE(fct_expectativas_mercado[mediana])
+			
+			```
+		lineageTag: bdb21534-6129-4885-8d55-fd7d23972878
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Mediana Top 5' = ```
+			AVERAGE(fct_comparativo_top5[mediana_top5])
+			
+			```
+		lineageTag: c5c77ac1-e7b8-4693-9f34-d59c2b6684c6
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Divergência Top 5' = ```
+			[Mediana Top 5] - [Mediana Mercado]
+			
+			```
+		lineageTag: 05aa88fd-a988-494d-8673-0cc06d8048a3
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Juro Real Ex-Ante' = ```
+			SELECTEDVALUE(fct_juro_real_ex_ante[taxa_juro_real_ex_ante])
+			
+			```
+		lineageTag: 5587a405-96ed-4f3d-8023-7b405c374932
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Selic Atual' = ```
+			SELECTEDVALUE(fct_juro_real_ex_ante[taxa_selic_meta_aa])
+			
+			```
+		lineageTag: 6a30c406-35eb-4db6-a51b-84eedb694bbf
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Vazio
+		isHidden
+		formatString: 0
+		lineageTag: dba4257b-3655-4dad-a475-202918daa5da
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [Vazio]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition _Medidas = calculated
+		mode: import
+		source = ```
+				ROW("Vazio", BLANK())
+				
+				```
+
+	annotation PBI_Id = d376f195a83f403ab0a70b9837f5f524
+

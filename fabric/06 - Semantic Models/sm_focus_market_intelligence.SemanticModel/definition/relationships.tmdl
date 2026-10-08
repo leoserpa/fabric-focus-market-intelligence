@@ -1,0 +1,20 @@
+relationship 3d2a8aa4-9401-a148-a636-9e289984205b
+	fromColumn: fct_expectativas_mercado.data_sk
+	toColumn: dim_calendario.data_sk
+
+relationship 17c9a125-08d2-90e9-8bf7-9dff9dca8563
+	fromColumn: fct_comparativo_top5.data_sk
+	toColumn: dim_calendario.data_sk
+
+relationship 6129f3f8-9804-4390-1190-440e946b1f38
+	fromColumn: fct_juro_real_ex_ante.data_sk
+	toColumn: dim_calendario.data_sk
+
+relationship cddf9280-4495-b9ce-81df-4ed25b9913f5
+	fromColumn: fct_expectativas_mercado.indicador
+	toColumn: dim_indicador.indicador
+
+relationship 51fc148a-0f33-babc-738b-62c6fa6affae
+	fromColumn: fct_comparativo_top5.indicador
+	toColumn: dim_indicador.indicador
+
