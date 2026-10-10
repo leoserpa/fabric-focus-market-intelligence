@@ -1,13 +1,13 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
-  "name": "7582b2db280879799245",
+  "name": "bf3f91344c7dfe82ade2",
   "position": {
-    "x": 0,
-    "y": 0,
-    "z": 0,
-    "height": 922,
-    "width": 1294,
-    "tabOrder": 0
+    "x": 984,
+    "y": 934,
+    "z": 3000,
+    "height": 320,
+    "width": 862,
+    "tabOrder": 3000
   },
   "visual": {
     "visualType": "lineChart",
@@ -42,11 +42,45 @@
                       "Entity": "_Medidas"
                     }
                   },
-                  "Property": "Mediana Mercado"
+                  "Property": "Último Valor do Gráfico"
                 }
               },
-              "queryRef": "_Medidas.Mediana Mercado",
-              "nativeQueryRef": "Mediana Mercado"
+              "queryRef": "_Medidas.Último Valor do Gráfico",
+              "nativeQueryRef": "Mediana · último ponto",
+              "displayName": "Mediana · último ponto",
+              "format": "\"R$\" #,0.00;-\"R$\" #,0.00;\"R$\" #,0.00"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Medidas"
+                    }
+                  },
+                  "Property": "Mediana Histórico"
+                }
+              },
+              "queryRef": "_Medidas.Mediana Histórico",
+              "nativeQueryRef": "Mediana · histórico",
+              "displayName": "Mediana · histórico",
+              "format": "\"R$\" #,0.00;-\"R$\" #,0.00;\"R$\" #,0.00"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Medidas"
+                    }
+                  },
+                  "Property": "Mediana Recente"
+                }
+              },
+              "queryRef": "_Medidas.Mediana Recente",
+              "nativeQueryRef": "Mediana · últimos 30 dias",
+              "displayName": "Mediana · últimos 30 dias",
+              "format": "\"R$\" #,0.00;-\"R$\" #,0.00;\"R$\" #,0.00"
             }
           ]
         }
@@ -77,10 +111,62 @@
             "show": {
               "expr": {
                 "Literal": {
-                  "Value": "false"
+                  "Value": "true"
+                }
+              }
+            },
+            "labelPosition": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Above'"
+                }
+              }
+            },
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "13D"
+                }
+              }
+            },
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 4,
+                      "Percent": 0
+                    }
+                  }
                 }
               }
             }
+          }
+        },
+        {
+          "properties": {
+            "dynamicLabelValue": {
+              "expr": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Medidas"
+                    }
+                  },
+                  "Property": "Último Valor Câmbio"
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "dataViewWildcard": {
+                  "matchingOption": 1
+                }
+              }
+            ],
+            "highlightMatching": 1
           }
         }
       ],
@@ -93,7 +179,47 @@
                   "Value": "false"
                 }
               }
+            },
+            "strokeWidth": {
+              "expr": {
+                "Literal": {
+                  "Value": "4D"
+                }
+              }
             }
+          }
+        },
+        {
+          "properties": {
+            "showMarker": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "markerColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 4,
+                      "Percent": 0
+                    }
+                  }
+                }
+              }
+            },
+            "markerSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "6D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "_Medidas.Último Valor do Gráfico"
           }
         }
       ],
@@ -109,6 +235,123 @@
             }
           }
         }
+      ],
+      "dataPoint": [
+        {
+          "properties": {
+            "fill": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 0,
+                      "Percent": -0.5
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "_Medidas.Mediana Histórico"
+          }
+        },
+        {
+          "properties": {
+            "fill": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 4,
+                      "Percent": 0
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "_Medidas.Último Valor do Gráfico"
+          }
+        }
+      ],
+      "legend": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "valueAxis": [
+        {
+          "properties": {
+            "gridlineShow": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "12D"
+                }
+              }
+            },
+            "labelColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 1,
+                      "Percent": 0
+                    }
+                  }
+                }
+              }
+            },
+            "labelPrecision": {
+              "expr": {
+                "Literal": {
+                  "Value": "2L"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "categoryAxis": [
+        {
+          "properties": {
+            "labelColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 1,
+                      "Percent": 0
+                    }
+                  }
+                }
+              }
+            },
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "12D"
+                }
+              }
+            }
+          }
+        }
       ]
     },
     "visualContainerObjects": {
@@ -118,7 +361,14 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Onde a inflação (IPCA) deve fechar em 2026?'"
+                  "Value": "'Qual é o dólar esperado para o fim de 2026?'"
+                }
+              }
+            },
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
                 }
               }
             }
@@ -131,7 +381,33 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Mediana das expectativas de mercado nos últimos 6 meses (% a.a.)'"
+                  "Value": "'Cotação no encerramento do ano (R$/US$): evolução da mediana projetada nos últimos 6 meses'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "background": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "border": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
                 }
               }
             }
@@ -143,34 +419,6 @@
   },
   "filterConfig": {
     "filters": [
-      {
-        "name": "a7c601e8c1f4e455a70a",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "dim_calendario"
-              }
-            },
-            "Property": "data"
-          }
-        },
-        "type": "Categorical"
-      },
-      {
-        "name": "312c4492d09691f6e59c",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "_Medidas"
-              }
-            },
-            "Property": "Mediana Mercado"
-          }
-        },
-        "type": "Advanced"
-      },
       {
         "name": "1ed32422a8de52a09d6d",
         "field": {
@@ -213,7 +461,7 @@
                     [
                       {
                         "Literal": {
-                          "Value": "'IPCA'"
+                          "Value": "'Câmbio'"
                         }
                       }
                     ]
@@ -347,8 +595,7 @@
               }
             }
           ]
-        },
-        "howCreated": "User"
+        }
       },
       {
         "name": "d9721832602e8a4b2716",

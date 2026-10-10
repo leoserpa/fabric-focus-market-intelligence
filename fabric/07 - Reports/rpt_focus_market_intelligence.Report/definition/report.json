@@ -24,8 +24,24 @@
           }
         }
       }
+    ],
+    "outspacePane": [
+      {
+        "properties": {
+          "expanded": {
+            "expr": {
+              "Literal": {
+                "Value": "true"
+              }
+            }
+          }
+        }
+      }
     ]
   },
+  "publicCustomVisuals": [
+    "htmlContent443BE3AD55E043BF878BED274D3A6855"
+  ],
   "resourcePackages": [
     {
       "name": "SharedResources",
@@ -35,6 +51,22 @@
           "name": "Fluent2-CY26SU10",
           "path": "BaseThemes/Fluent2-CY26SU10.json",
           "type": "BaseTheme"
+        }
+      ]
+    },
+    {
+      "name": "RegisteredResources",
+      "type": "RegisteredResources",
+      "items": [
+        {
+          "name": "focus-pagina-1-branco-1920x1445924739553470331.svg",
+          "path": "focus-pagina-1-branco-1920x1445924739553470331.svg",
+          "type": "Image"
+        },
+        {
+          "name": "focus-pagina-2-mercado-top5-193138036364431602.svg",
+          "path": "focus-pagina-2-mercado-top5-193138036364431602.svg",
+          "type": "Image"
         }
       ]
     }
