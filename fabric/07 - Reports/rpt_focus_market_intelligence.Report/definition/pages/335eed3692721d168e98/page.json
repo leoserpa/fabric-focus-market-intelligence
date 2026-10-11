@@ -32,7 +32,7 @@
               "name": {
                 "expr": {
                   "Literal": {
-                    "Value": "'focus-pagina-2-mercado-top5-1920x1440.svg'"
+                    "Value": "'focus-pagina-2-mercado-top5-1920x1440 (12).svg'"
                   }
                 }
               },
@@ -41,7 +41,7 @@
                   "ResourcePackageItem": {
                     "PackageName": "RegisteredResources",
                     "PackageType": 1,
-                    "ItemName": "focus-pagina-2-mercado-top5-193138036364431602.svg"
+                    "ItemName": "focus-pagina-2-mercado-top5-192411163923475952.svg"
                   }
                 }
               },

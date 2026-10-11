@@ -253,6 +253,225 @@ table _Medidas
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
+	measure 'Mediana Mercado Comparativo' = ```
+			
+			AVERAGE(fct_comparativo_top5[mediana_mercado])
+			
+			```
+		lineageTag: 66f5a8f9-34db-4a73-9f9b-5b4855b52e16
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Último Rótulo Top 5' = ```
+			
+			VAR UltimaData = 
+			    MAXX(
+			        FILTER(
+			            ALLSELECTED(dim_calendario[data]),
+			            NOT ISBLANK(CALCULATE([Mediana Top 5]))
+			        ),
+			        dim_calendario[data]
+			    )
+			RETURN
+			    IF(
+			        SELECTEDVALUE(dim_calendario[data]) = UltimaData,
+			        FORMAT([Mediana Top 5], "0.00", "pt-BR") & "%",
+			        BLANK()
+			    )
+			
+			```
+		lineageTag: 0166fa16-074c-4f2e-9773-e9a526a777c8
+
+	measure 'Último Rótulo Mercado' = ```
+			
+			VAR UltimaData = 
+			    MAXX(
+			        FILTER(
+			            ALLSELECTED(dim_calendario[data]),
+			            NOT ISBLANK(CALCULATE([Mediana Mercado Comparativo]))
+			        ),
+			        dim_calendario[data]
+			    )
+			RETURN
+			    IF(
+			        SELECTEDVALUE(dim_calendario[data]) = UltimaData,
+			        FORMAT([Mediana Mercado Comparativo], "0.00", "pt-BR") & "%",
+			        BLANK()
+			    )
+			
+			```
+		lineageTag: fe9134c3-690a-4c40-a307-103ca0023672
+
+	measure 'Ponteiro Top 5' = ```
+			
+			VAR UltimaData = 
+			    MAXX(
+			        FILTER(
+			            ALLSELECTED(dim_calendario[data]),
+			            NOT ISBLANK(CALCULATE([Mediana Top 5]))
+			        ),
+			        dim_calendario[data]
+			    )
+			RETURN
+			    IF(
+			        SELECTEDVALUE(dim_calendario[data]) = UltimaData,
+			        [Mediana Top 5],
+			        BLANK()
+			    )
+			
+			```
+		lineageTag: 2de67d80-83cc-449d-80eb-a1e2599d6356
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Ponteiro Mercado' = ```
+			
+			VAR UltimaData = 
+			    MAXX(
+			        FILTER(
+			            ALLSELECTED(dim_calendario[data]),
+			            NOT ISBLANK(CALCULATE([Mediana Mercado Comparativo]))
+			        ),
+			        dim_calendario[data]
+			    )
+			RETURN
+			    IF(
+			        SELECTEDVALUE(dim_calendario[data]) = UltimaData,
+			        [Mediana Mercado Comparativo],
+			        BLANK()
+			    )
+			
+			```
+		lineageTag: 0e87f1f6-40b3-4187-8ef6-eb913eb0f099
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Divergência Top 5 Spread' = ```
+			
+			AVERAGE(fct_comparativo_top5[divergencia_top5_mercado])
+			
+			```
+		lineageTag: e8c72541-524f-4d5f-8680-a8c77c5c2529
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Cor da Divergência' = ```
+			
+			IF(
+			    [Divergência Top 5 Spread] >= 0,
+			    "#E66C37",  -- Laranja (Top 5 mais alto / Hawkish)
+			    "#A4AAAD"   -- Cinza escuro (Top 5 mais baixo / Dovish)
+			)
+			
+			```
+		lineageTag: 142ea644-6b20-42b3-9884-0680f5673767
+
+	measure 'KPI Divergência IPCA' = ```
+			
+			VAR DataRecente = 
+			    CALCULATE(
+			        MAX(fct_comparativo_top5[data]),
+			        REMOVEFILTERS(dim_calendario),
+			        fct_comparativo_top5[indicador] = "IPCA",
+			        fct_comparativo_top5[ano_referencia] = 2026
+			    )
+			VAR Diferenca = 
+			    CALCULATE(
+			        AVERAGE(fct_comparativo_top5[divergencia_top5_mercado]),
+			        REMOVEFILTERS(dim_calendario),
+			        fct_comparativo_top5[indicador] = "IPCA",
+			        fct_comparativo_top5[ano_referencia] = 2026,
+			        fct_comparativo_top5[data] = DataRecente
+			    )
+			RETURN
+			    Diferenca
+			
+			```
+		lineageTag: 50ca6762-e030-4eab-9cfc-01819c0017f7
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'KPI Divergência Selic' = ```
+			
+			VAR DataRecente = 
+			    CALCULATE(
+			        MAX(fct_comparativo_top5[data]),
+			        REMOVEFILTERS(dim_calendario),
+			        fct_comparativo_top5[indicador] = "Selic",
+			        fct_comparativo_top5[ano_referencia] = 2026
+			    )
+			VAR Diferenca = 
+			    CALCULATE(
+			        AVERAGE(fct_comparativo_top5[divergencia_top5_mercado]),
+			        REMOVEFILTERS(dim_calendario),
+			        fct_comparativo_top5[indicador] = "Selic",
+			        fct_comparativo_top5[ano_referencia] = 2026,
+			        fct_comparativo_top5[data] = DataRecente
+			    )
+			RETURN
+			    Diferenca
+			
+			```
+		lineageTag: 05318931-261e-43a3-ba88-7c1a8d8ef1a5
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Mercado Última Data' = ```
+			
+			VAR UltimaData = CALCULATE(MAX(fct_comparativo_top5[data]), REMOVEFILTERS())
+			RETURN
+			CALCULATE(
+			    AVERAGE(fct_comparativo_top5[mediana_mercado]),
+			    fct_comparativo_top5[data] = UltimaData
+			)
+			
+			```
+		lineageTag: 66bf675c-a15a-4b8d-8fc5-e9cd35236a3a
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Top 5 Última Data' = ```
+			
+			VAR UltimaData = CALCULATE(MAX(fct_comparativo_top5[data]), REMOVEFILTERS())
+			RETURN
+			CALCULATE(
+			    AVERAGE(fct_comparativo_top5[mediana_top5]),
+			    fct_comparativo_top5[data] = UltimaData
+			)
+			
+			```
+		lineageTag: e47d9387-17b0-4783-bcbd-0b940820adf8
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Divergência Última Data' = ```
+			
+			VAR UltimaData = CALCULATE(MAX(fct_comparativo_top5[data]), REMOVEFILTERS())
+			RETURN
+			CALCULATE(
+			    AVERAGE(fct_comparativo_top5[divergencia_top5_mercado]),
+			    fct_comparativo_top5[data] = UltimaData
+			)
+			
+			```
+		lineageTag: b71abcaf-4750-4c09-9e5b-d62a5c4e178f
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Cor da Diferença Tabela' = ```
+			
+			VAR Dif = [Divergência Última Data]
+			RETURN
+			SWITCH(
+			    TRUE(),
+			    Dif > 0, "#E66C37",   -- Laranja institucional Focus
+			    Dif < 0, "#23282B",   -- Grafite escuro
+			    "#8C969A"             -- Cinza suave para o 0,00 (Consenso)
+			)
+			
+			```
+		lineageTag: 1b59acf6-506d-4a5a-9ed2-212644843542
+
 	column Vazio
 		isHidden
 		formatString: 0

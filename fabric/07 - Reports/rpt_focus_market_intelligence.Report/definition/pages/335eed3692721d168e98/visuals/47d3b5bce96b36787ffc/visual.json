@@ -1,13 +1,13 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
-  "name": "a66224a7cfad2f6a00c7",
+  "name": "47d3b5bce96b36787ffc",
   "position": {
-    "x": 1455.7142857142858,
+    "x": 1241.4285714285716,
     "y": 54.285714285714292,
-    "z": 10000,
+    "z": 11003,
     "height": 38.571428571428577,
     "width": 174.28571428571431,
-    "tabOrder": 10000
+    "tabOrder": 11003
   },
   "visual": {
     "visualType": "actionButton",
@@ -45,7 +45,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Mercado X Top 5'"
+                  "Value": "'Panorama Focus'"
                 }
               }
             },
@@ -78,13 +78,6 @@
               "expr": {
                 "Literal": {
                   "Value": "14D"
-                }
-              }
-            },
-            "text": {
-              "expr": {
-                "Literal": {
-                  "Value": "'Mercado X Top 5'"
                 }
               }
             }
@@ -137,9 +130,8 @@
               "solid": {
                 "color": {
                   "expr": {
-                    "ThemeDataColor": {
-                      "ColorId": 0,
-                      "Percent": -0.5
+                    "Literal": {
+                      "Value": "'#A4AAAD'"
                     }
                   }
                 }
@@ -156,9 +148,8 @@
               "solid": {
                 "color": {
                   "expr": {
-                    "ThemeDataColor": {
-                      "ColorId": 0,
-                      "Percent": -0.5
+                    "Literal": {
+                      "Value": "'#A4AAAD'"
                     }
                   }
                 }
@@ -175,9 +166,8 @@
               "solid": {
                 "color": {
                   "expr": {
-                    "ThemeDataColor": {
-                      "ColorId": 0,
-                      "Percent": -0.1
+                    "Literal": {
+                      "Value": "'#A4AAAD'"
                     }
                   }
                 }
@@ -252,7 +242,7 @@
             "navigationSection": {
               "expr": {
                 "Literal": {
-                  "Value": "'908b9ce6096682f19008'"
+                  "Value": "''"
                 }
               }
             }

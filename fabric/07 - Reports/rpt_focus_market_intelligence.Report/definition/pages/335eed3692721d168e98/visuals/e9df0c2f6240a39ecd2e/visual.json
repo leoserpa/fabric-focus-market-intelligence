@@ -1,16 +1,16 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
-  "name": "3942a84f7de24eed97c7",
+  "name": "e9df0c2f6240a39ecd2e",
   "position": {
-    "x": 67.5,
-    "y": 482.5,
-    "z": 11001,
-    "height": 342.5,
-    "width": 872.5,
-    "tabOrder": 11001
+    "x": 72,
+    "y": 954,
+    "z": 11007,
+    "height": 298,
+    "width": 866,
+    "tabOrder": 11007
   },
   "visual": {
-    "visualType": "lineChart",
+    "visualType": "lineStackedColumnComboChart",
     "query": {
       "queryState": {
         "Category": {
@@ -42,25 +42,12 @@
                       "Entity": "_Medidas"
                     }
                   },
-                  "Property": "Mediana Top 5"
+                  "Property": "Divergência Top 5 Spread"
                 }
               },
-              "queryRef": "_Medidas.Mediana Top 5",
-              "nativeQueryRef": "Mediana Top 5"
-            },
-            {
-              "field": {
-                "Measure": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "_Medidas"
-                    }
-                  },
-                  "Property": "Mediana Mercado"
-                }
-              },
-              "queryRef": "_Medidas.Mediana Mercado",
-              "nativeQueryRef": "Mediana Mercado"
+              "queryRef": "_Medidas.Divergência Top 5 Spread",
+              "nativeQueryRef": "Divergência ",
+              "displayName": "Divergência "
             }
           ]
         }
@@ -85,6 +72,48 @@
       }
     },
     "objects": {
+      "dataPoint": [
+        {
+          "properties": {
+            "fill": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "_Medidas"
+                        }
+                      },
+                      "Property": "Cor da Divergência"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "dataViewWildcard": {
+                  "matchingOption": 1
+                }
+              }
+            ]
+          }
+        },
+        {
+          "properties": {
+            "borderShow": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
       "labels": [
         {
           "properties": {
@@ -98,47 +127,27 @@
           }
         }
       ],
-      "dataPoint": [
-        {
-          "properties": {
-            "fill": {
-              "solid": {
-                "color": {
-                  "expr": {
-                    "Literal": {
-                      "Value": "'#E66C37'"
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "selector": {
-            "metadata": "_Medidas.Mediana Top 5"
-          }
-        },
-        {
-          "properties": {
-            "fill": {
-              "solid": {
-                "color": {
-                  "expr": {
-                    "Literal": {
-                      "Value": "'#858585'"
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "selector": {
-            "metadata": "_Medidas.Mediana Mercado"
-          }
-        }
-      ],
       "valueAxis": [
         {
           "properties": {
+            "gridlineShow": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
+            "labelColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#000000'"
+                    }
+                  }
+                }
+              }
+            },
             "fontSize": {
               "expr": {
                 "Literal": {
@@ -155,6 +164,78 @@
             }
           }
         }
+      ],
+      "categoryAxis": [
+        {
+          "properties": {
+            "gridlineShow": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
+            "labelColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#000000'"
+                    }
+                  }
+                }
+              }
+            },
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "12D"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "border": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "background": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
       ]
     },
     "drillFilterOtherVisuals": true
@@ -162,16 +243,15 @@
   "filterConfig": {
     "filters": [
       {
-        "name": "1943ae21ec65c3f59220",
-        "ordinal": 0,
+        "name": "ef08892dba54f1655c59",
         "field": {
           "Column": {
             "Expression": {
               "SourceRef": {
-                "Entity": "fct_expectativas_mercado"
+                "Entity": "fct_comparativo_top5"
               }
             },
-            "Property": "base_calculo"
+            "Property": "ano_referencia"
           }
         },
         "type": "Categorical",
@@ -180,7 +260,7 @@
           "From": [
             {
               "Name": "f",
-              "Entity": "fct_expectativas_mercado",
+              "Entity": "fct_comparativo_top5",
               "Type": 0
             }
           ],
@@ -196,7 +276,7 @@
                             "Source": "f"
                           }
                         },
-                        "Property": "base_calculo"
+                        "Property": "ano_referencia"
                       }
                     }
                   ],
@@ -204,7 +284,7 @@
                     [
                       {
                         "Literal": {
-                          "Value": "0L"
+                          "Value": "2026L"
                         }
                       }
                     ]
@@ -217,23 +297,7 @@
         "howCreated": "User"
       },
       {
-        "name": "f89c79d1ebe103455bac",
-        "ordinal": 1,
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "dim_calendario"
-              }
-            },
-            "Property": "data"
-          }
-        },
-        "type": "Categorical"
-      },
-      {
-        "name": "fcddd2e80cbaee088059",
-        "ordinal": 2,
+        "name": "f2424ee16b89c91f1626",
         "field": {
           "Column": {
             "Expression": {
@@ -300,12 +364,10 @@
               }
             }
           ]
-        },
-        "howCreated": "User"
+        }
       },
       {
-        "name": "2d69b6a3ea0436713755",
-        "ordinal": 3,
+        "name": "fdfef8d581b5ddc1efc5",
         "field": {
           "Column": {
             "Expression": {
@@ -359,8 +421,7 @@
         "howCreated": "User"
       },
       {
-        "name": "b4f7feaf3ae8af60d99d",
-        "ordinal": 4,
+        "name": "5801be69a3f6f2a265f6",
         "field": {
           "Measure": {
             "Expression": {
@@ -368,137 +429,11 @@
                 "Entity": "_Medidas"
               }
             },
-            "Property": "Mediana Mercado"
+            "Property": "Divergência Top 5 Spread"
           }
         },
         "type": "Advanced"
-      },
-      {
-        "name": "b1f72f2267d3bd8bab41",
-        "ordinal": 5,
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "_Medidas"
-              }
-            },
-            "Property": "Mediana Top 5"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "c655849d15c0fdd62d9a",
-        "ordinal": 6,
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "fct_expectativas_mercado"
-              }
-            },
-            "Property": "ano_referencia"
-          }
-        },
-        "type": "Categorical",
-        "filter": {
-          "Version": 2,
-          "From": [
-            {
-              "Name": "f",
-              "Entity": "fct_expectativas_mercado",
-              "Type": 0
-            }
-          ],
-          "Where": [
-            {
-              "Condition": {
-                "In": {
-                  "Expressions": [
-                    {
-                      "Column": {
-                        "Expression": {
-                          "SourceRef": {
-                            "Source": "f"
-                          }
-                        },
-                        "Property": "ano_referencia"
-                      }
-                    }
-                  ],
-                  "Values": [
-                    [
-                      {
-                        "Literal": {
-                          "Value": "2026L"
-                        }
-                      }
-                    ]
-                  ]
-                }
-              }
-            }
-          ]
-        },
-        "howCreated": "User"
-      },
-      {
-        "name": "06f21fe26d43ff1fd2e5",
-        "ordinal": 7,
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "fct_comparativo_top5"
-              }
-            },
-            "Property": "ano_referencia"
-          }
-        },
-        "type": "Categorical",
-        "filter": {
-          "Version": 2,
-          "From": [
-            {
-              "Name": "f",
-              "Entity": "fct_comparativo_top5",
-              "Type": 0
-            }
-          ],
-          "Where": [
-            {
-              "Condition": {
-                "In": {
-                  "Expressions": [
-                    {
-                      "Column": {
-                        "Expression": {
-                          "SourceRef": {
-                            "Source": "f"
-                          }
-                        },
-                        "Property": "ano_referencia"
-                      }
-                    }
-                  ],
-                  "Values": [
-                    [
-                      {
-                        "Literal": {
-                          "Value": "2026L"
-                        }
-                      }
-                    ]
-                  ]
-                }
-              }
-            }
-          ]
-        },
-        "howCreated": "User"
       }
-    ],
-    "filterSortOrder": "Custom"
+    ]
   }
 }

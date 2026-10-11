@@ -1,13 +1,13 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
-  "name": "0f7ef1b6294aae2b0031",
+  "name": "a975da2df5301de6bfab",
   "position": {
-    "x": 1661.6666666666667,
-    "y": 55,
-    "z": 11000,
-    "height": 38.333333333333336,
-    "width": 183.33333333333334,
-    "tabOrder": 11000
+    "x": 1455.7142857142858,
+    "y": 54.285714285714292,
+    "z": 11004,
+    "height": 38.571428571428577,
+    "width": 174.28571428571431,
+    "tabOrder": 11004
   },
   "visual": {
     "visualType": "actionButton",
@@ -45,7 +45,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Juros e inflação'"
+                  "Value": "'Mercado X Top 5'"
                 }
               }
             },
@@ -84,7 +84,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Juros e inflação'"
+                  "Value": "'Mercado X Top 5'"
                 }
               }
             }
@@ -105,31 +105,10 @@
                   }
                 }
               }
-            },
-            "text": {
-              "expr": {
-                "Literal": {
-                  "Value": "'Juros e inflação'"
-                }
-              }
             }
           },
           "selector": {
             "id": "disabled"
-          }
-        },
-        {
-          "properties": {
-            "text": {
-              "expr": {
-                "Literal": {
-                  "Value": "'Juros e inflação'"
-                }
-              }
-            }
-          },
-          "selector": {
-            "id": "hover"
           }
         }
       ],
@@ -158,9 +137,8 @@
               "solid": {
                 "color": {
                   "expr": {
-                    "ThemeDataColor": {
-                      "ColorId": 0,
-                      "Percent": -0.5
+                    "Literal": {
+                      "Value": "'#A4AAAD'"
                     }
                   }
                 }
@@ -177,9 +155,8 @@
               "solid": {
                 "color": {
                   "expr": {
-                    "ThemeDataColor": {
-                      "ColorId": 0,
-                      "Percent": -0.5
+                    "Literal": {
+                      "Value": "'#A4AAAD'"
                     }
                   }
                 }
@@ -196,9 +173,8 @@
               "solid": {
                 "color": {
                   "expr": {
-                    "ThemeDataColor": {
-                      "ColorId": 0,
-                      "Percent": -0.1
+                    "Literal": {
+                      "Value": "'#A4AAAD'"
                     }
                   }
                 }
@@ -273,7 +249,7 @@
             "navigationSection": {
               "expr": {
                 "Literal": {
-                  "Value": "'1992cfe9c42543ed10d3'"
+                  "Value": "'908b9ce6096682f19008'"
                 }
               }
             }

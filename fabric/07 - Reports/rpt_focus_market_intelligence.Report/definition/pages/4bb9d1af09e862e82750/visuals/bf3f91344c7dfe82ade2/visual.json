@@ -140,6 +140,13 @@
                   }
                 }
               }
+            },
+            "bold": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
             }
           }
         },
@@ -243,9 +250,8 @@
               "solid": {
                 "color": {
                   "expr": {
-                    "ThemeDataColor": {
-                      "ColorId": 0,
-                      "Percent": -0.5
+                    "Literal": {
+                      "Value": "'#A4AAAD'"
                     }
                   }
                 }
@@ -650,6 +656,48 @@
           ]
         },
         "howCreated": "User"
+      },
+      {
+        "name": "f4af6e0c77e59176b460",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "_Medidas"
+              }
+            },
+            "Property": "Último Valor do Gráfico"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "907ff11de150edf39ad1",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "_Medidas"
+              }
+            },
+            "Property": "Mediana Histórico"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "525e72419c084fedc85a",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "_Medidas"
+              }
+            },
+            "Property": "Mediana Recente"
+          }
+        },
+        "type": "Advanced"
       }
     ]
   }

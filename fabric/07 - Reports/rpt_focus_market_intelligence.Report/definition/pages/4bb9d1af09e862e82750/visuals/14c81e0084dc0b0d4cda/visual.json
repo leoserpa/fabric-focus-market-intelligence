@@ -147,6 +147,13 @@
                   "Value": "50L"
                 }
               }
+            },
+            "bold": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
             }
           }
         },
@@ -250,9 +257,8 @@
               "solid": {
                 "color": {
                   "expr": {
-                    "ThemeDataColor": {
-                      "ColorId": 0,
-                      "Percent": -0.5
+                    "Literal": {
+                      "Value": "'#A4AAAD'"
                     }
                   }
                 }
@@ -664,6 +670,48 @@
           ]
         },
         "howCreated": "User"
+      },
+      {
+        "name": "f45b30b16c40404047da",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "_Medidas"
+              }
+            },
+            "Property": "Último Valor do Gráfico"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "8dc4e81c5efe2d0cd623",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "_Medidas"
+              }
+            },
+            "Property": "Mediana Histórico"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "5c412fba8d953c6e5220",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "_Medidas"
+              }
+            },
+            "Property": "Mediana Recente"
+          }
+        },
+        "type": "Advanced"
       }
     ]
   }
