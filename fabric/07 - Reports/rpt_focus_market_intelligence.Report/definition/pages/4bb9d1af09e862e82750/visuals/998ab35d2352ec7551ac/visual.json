@@ -1,12 +1,12 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
-  "name": "47d3b5bce96b36787ffc",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
+  "name": "998ab35d2352ec7551ac",
   "position": {
-    "x": 1241.4285714285716,
-    "y": 54.285714285714292,
+    "x": 1566.6666666666667,
+    "y": 53.333333333333336,
     "z": 11003,
-    "height": 38.571428571428577,
-    "width": 174.28571428571431,
+    "height": 38.333333333333336,
+    "width": 145,
     "tabOrder": 11003
   },
   "visual": {
@@ -45,7 +45,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Panorama Focus'"
+                  "Value": "'Mercado X Top 5'"
                 }
               }
             },
@@ -63,7 +63,7 @@
             "fontSize": {
               "expr": {
                 "Literal": {
-                  "Value": "14D"
+                  "Value": "12D"
                 }
               }
             }
@@ -77,7 +77,14 @@
             "fontSize": {
               "expr": {
                 "Literal": {
-                  "Value": "14D"
+                  "Value": "12D"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Mercado X Top 5'"
                 }
               }
             }
@@ -242,7 +249,7 @@
             "navigationSection": {
               "expr": {
                 "Literal": {
-                  "Value": "''"
+                  "Value": "'335eed3692721d168e98'"
                 }
               }
             }

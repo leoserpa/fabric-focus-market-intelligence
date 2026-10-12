@@ -1,13 +1,13 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
-  "name": "ce293570bbb2c8e07f43",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
+  "name": "05f6feb66363f27ec0de",
   "position": {
-    "x": 1241.4285714285716,
-    "y": 54.285714285714292,
-    "z": 9000,
-    "height": 38.571428571428577,
-    "width": 174.28571428571431,
-    "tabOrder": 9000
+    "x": 1415,
+    "y": 53.333333333333336,
+    "z": 9002,
+    "height": 38.333333333333336,
+    "width": 141.66666666666669,
+    "tabOrder": 9002
   },
   "visual": {
     "visualType": "actionButton",
@@ -63,7 +63,7 @@
             "fontSize": {
               "expr": {
                 "Literal": {
-                  "Value": "14D"
+                  "Value": "12D"
                 }
               }
             }
@@ -77,7 +77,7 @@
             "fontSize": {
               "expr": {
                 "Literal": {
-                  "Value": "14D"
+                  "Value": "12D"
                 }
               }
             }
@@ -242,7 +242,7 @@
             "navigationSection": {
               "expr": {
                 "Literal": {
-                  "Value": "''"
+                  "Value": "'4bb9d1af09e862e82750'"
                 }
               }
             }

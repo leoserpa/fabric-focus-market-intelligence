@@ -1,13 +1,13 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
-  "name": "62303a4036316a94b786",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
+  "name": "7bff4fce1274a931b6a7",
   "position": {
-    "x": 1455.7142857142858,
-    "y": 54.285714285714292,
-    "z": 10000,
-    "height": 38.571428571428577,
-    "width": 174.28571428571431,
-    "tabOrder": 10000
+    "x": 1725,
+    "y": 53.333333333333336,
+    "z": 9004,
+    "height": 38.333333333333336,
+    "width": 135,
+    "tabOrder": 9004
   },
   "visual": {
     "visualType": "actionButton",
@@ -45,7 +45,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Mercado X Top 5'"
+                  "Value": "'Juros e inflação'"
                 }
               }
             },
@@ -63,7 +63,7 @@
             "fontSize": {
               "expr": {
                 "Literal": {
-                  "Value": "14D"
+                  "Value": "12D"
                 }
               }
             }
@@ -77,14 +77,14 @@
             "fontSize": {
               "expr": {
                 "Literal": {
-                  "Value": "14D"
+                  "Value": "12D"
                 }
               }
             },
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Mercado X Top 5'"
+                  "Value": "'Juros e inflação'"
                 }
               }
             }
@@ -105,10 +105,31 @@
                   }
                 }
               }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Juros e inflação'"
+                }
+              }
             }
           },
           "selector": {
             "id": "disabled"
+          }
+        },
+        {
+          "properties": {
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Juros e inflação'"
+                }
+              }
+            }
+          },
+          "selector": {
+            "id": "hover"
           }
         }
       ],
@@ -249,7 +270,7 @@
             "navigationSection": {
               "expr": {
                 "Literal": {
-                  "Value": "'908b9ce6096682f19008'"
+                  "Value": "''"
                 }
               }
             }

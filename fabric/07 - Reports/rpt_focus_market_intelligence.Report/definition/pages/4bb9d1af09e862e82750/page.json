@@ -32,7 +32,7 @@
               "name": {
                 "expr": {
                   "Literal": {
-                    "Value": "'focus-pagina-1-branco-1920x1440 (16).svg'"
+                    "Value": "'focus-pagina-1-branco-1920x1440 (1).svg'"
                   }
                 }
               },
@@ -41,7 +41,7 @@
                   "ResourcePackageItem": {
                     "PackageName": "RegisteredResources",
                     "PackageType": 1,
-                    "ItemName": "focus-pagina-1-branco-1920x1445924739553470331.svg"
+                    "ItemName": "focus-pagina-1-branco-1920x1445170586943887604.svg"
                   }
                 }
               },
