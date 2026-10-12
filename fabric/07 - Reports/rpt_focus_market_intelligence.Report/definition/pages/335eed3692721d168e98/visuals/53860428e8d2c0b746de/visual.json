@@ -1,5 +1,5 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
   "name": "53860428e8d2c0b746de",
   "position": {
     "x": 985,
@@ -976,6 +976,20 @@
               }
             },
             "Property": "Ponteiro Mercado"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "1ada69c3ea9d05ff420f",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "_Medidas"
+              }
+            },
+            "Property": "Divergência Top 5 Spread"
           }
         },
         "type": "Advanced"

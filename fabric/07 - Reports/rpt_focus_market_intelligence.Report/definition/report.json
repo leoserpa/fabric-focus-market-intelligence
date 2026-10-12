@@ -31,7 +31,7 @@
           "expanded": {
             "expr": {
               "Literal": {
-                "Value": "false"
+                "Value": "true"
               }
             }
           }
@@ -66,6 +66,11 @@
         {
           "name": "focus-pagina-2-mercado-top5-192411163923475952.svg",
           "path": "focus-pagina-2-mercado-top5-192411163923475952.svg",
+          "type": "Image"
+        },
+        {
+          "name": "focus-pagina-3-juros-inflacao-8771694687274356.svg",
+          "path": "focus-pagina-3-juros-inflacao-8771694687274356.svg",
           "type": "Image"
         }
       ]

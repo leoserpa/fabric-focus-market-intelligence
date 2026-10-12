@@ -472,6 +472,129 @@ table _Medidas
 			```
 		lineageTag: 1b59acf6-506d-4a5a-9ed2-212644843542
 
+	measure 'KPI Selic Vigente' = ```
+			
+			VAR DataMax = CALCULATE(MAX(fct_juro_real_ex_ante[data]), REMOVEFILTERS(dim_calendario))
+			RETURN
+			CALCULATE(
+			    AVERAGE(fct_juro_real_ex_ante[taxa_selic_meta_aa]),
+			    fct_juro_real_ex_ante[data] = DataMax
+			)
+			
+			```
+		lineageTag: 08c7dd30-20b0-42fa-b329-69357477ba64
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'KPI Inflação 12M' = ```
+			
+			VAR DataMax = CALCULATE(MAX(fct_juro_real_ex_ante[data]), REMOVEFILTERS(dim_calendario))
+			RETURN
+			CALCULATE(
+			    AVERAGE(fct_juro_real_ex_ante[ipca_esperado_12m]),
+			    fct_juro_real_ex_ante[data] = DataMax
+			)
+			
+			```
+		lineageTag: 10874026-d930-4f28-b883-e0023f072027
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'KPI Juro Real Ex-Ante' = ```
+			
+			VAR DataMax = CALCULATE(MAX(fct_juro_real_ex_ante[data]), REMOVEFILTERS(dim_calendario))
+			RETURN
+			CALCULATE(
+			    AVERAGE(fct_juro_real_ex_ante[taxa_juro_real_ex_ante]),
+			    fct_juro_real_ex_ante[data] = DataMax
+			)
+			
+			```
+		lineageTag: fea662f5-78eb-4068-be45-953f66b82c73
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Juro Real Histórico' = ```
+			
+			AVERAGE(fct_juro_real_ex_ante[taxa_juro_real_ex_ante])
+			
+			```
+		lineageTag: 47c5851e-f485-4dd4-8f28-ebe017295b7e
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Ponteiro Juro Real' = ```
+			
+			VAR UltimaData = 
+			    MAXX(
+			        FILTER(
+			            ALLSELECTED(dim_calendario[data]),
+			            NOT ISBLANK(CALCULATE([Juro Real Histórico]))
+			        ),
+			        dim_calendario[data]
+			    )
+			RETURN
+			IF(SELECTEDVALUE(dim_calendario[data]) = UltimaData, [Juro Real Histórico], BLANK())
+			
+			```
+		lineageTag: f18056ae-2aa0-4056-b2da-1bd3c8dc766e
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Selic Histórica' = ```
+			
+			AVERAGE(fct_juro_real_ex_ante[taxa_selic_meta_aa])
+			
+			```
+		lineageTag: 91c848d1-2f20-48a5-9be4-3d0dda4552a9
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Ponteiro Selic Vigente' = ```
+			
+			VAR UltimaData = 
+			    MAXX(
+			        FILTER(
+			            ALLSELECTED(dim_calendario[data]),
+			            NOT ISBLANK(CALCULATE([Selic Histórica]))
+			        ),
+			        dim_calendario[data]
+			    )
+			RETURN
+			IF(SELECTEDVALUE(dim_calendario[data]) = UltimaData, [Selic Histórica], BLANK())
+			
+			```
+		lineageTag: 8b781b62-9584-4c57-9936-4b73979b3925
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Inflação 12M Histórica' = ```
+			
+			AVERAGE(fct_juro_real_ex_ante[ipca_esperado_12m])
+			
+			```
+		lineageTag: 9ba548c4-8257-4618-88e0-b11e13b1ad1a
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Ponteiro Inflação 12M' = ```
+			
+			VAR UltimaData = 
+			    MAXX(
+			        FILTER(
+			            ALLSELECTED(dim_calendario[data]),
+			            NOT ISBLANK(CALCULATE([Inflação 12M Histórica]))
+			        ),
+			        dim_calendario[data]
+			    )
+			RETURN
+			IF(SELECTEDVALUE(dim_calendario[data]) = UltimaData, [Inflação 12M Histórica], BLANK())
+			
+			```
+		lineageTag: 6e416015-e574-4766-a6e2-a69f88cd4ad7
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
 	column Vazio
 		isHidden
 		formatString: 0
