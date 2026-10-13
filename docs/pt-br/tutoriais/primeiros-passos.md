@@ -96,5 +96,5 @@ Para popular as tabelas e transformar os dados pela primeira vez:
 Você replicou com sucesso uma infraestrutura corporativa de Analytics Engineering no Microsoft Fabric.
 
 **Próximos passos recomendados:**
-* Para entender as transformações e testes de dados, leia o guia [Como Executar e Testar Modelos dbt](../how-to-guides/run-dbt-pipeline.md).
-* Para compreender as fórmulas econômicas e a arquitetura em detalhes, leia [Metodologia Focus e Equação de Fisher](../explanation/fisher-equation-methodology.md).
+* Para entender as transformações e testes de dados, leia o guia [Como Executar e Testar Modelos dbt](../guias-praticos/executar-pipeline-dbt.md).
+* Para compreender as fórmulas econômicas e a arquitetura em detalhes, leia [Metodologia Focus e Equação de Fisher](../explicacao/metodologia-focus-e-fisher.md).
