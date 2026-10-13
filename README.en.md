@@ -11,6 +11,8 @@
 [![Central Bank of Brazil](https://img.shields.io/badge/Data-BCB%20Olinda%20%26%20SGS-003366)](https://dadosabertos.bcb.gov.br/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](./LICENSE)
 
+![Focus Market Intelligence](./docs/assets/screenshots/00-capa-projeto.jpg)
+
 ---
 
 ## Project Overview
