@@ -72,16 +72,22 @@ The Power BI report is organized into three complementary executive screens form
 * 6-month historical forecast trends featuring amber highlight lines for the **last 30 days** of consensus revision (official BCB assessment window).
 * Multi-year projection matrix displaying median expectations and variance deltas across future years.
 
+![Dashboard Page 1: Focus Overview](./docs/assets/screenshots/01-panorama-focus.jpg)
+
 ### 2. Page 2: Market Consensus vs Top 5 (Mercado x Top 5)
 * Institutional comparative analysis between the **Broad Market Consensus** and the **Top 5 forecasters** (institutions ranked highest in accuracy by BCB).
 * Divergence analysis featuring conditional scatter and delta charts: visual identification of **Hawkish** (amber) versus **Dovish** (charcoal) institutional sentiment.
 * Spread KPI cards quantifying divergence in basis points / percentage points (Delta p.p.).
+
+![Dashboard Page 2: Market Consensus vs Top 5](./docs/assets/screenshots/02-mercado-top5.jpg)
 
 ### 3. Page 3: Interest Rates and Inflation (Ex-Ante Real Interest Rate)
 * Policy tracking of official Copom benchmark interest rates alongside 12-month smoothed forward inflation expectations (IPCA 12M forward).
 * Real ex-ante neutral/policy rate computed strictly through the **Fisher Equation**:
   $$\text{Ex-Ante Real Rate} = \left( \frac{1 + \frac{\text{Selic}}{100}}{1 + \frac{\text{IPCA}_{12M}}{100}} - 1 \right) \times 100$$
 * Educational analytical methodology callout explaining the mathematical formulation, real yield dynamics, and economic transmission mechanisms.
+
+![Dashboard Page 3: Real Interest Rate and Inflation](./docs/assets/screenshots/03-juros-inflacao.jpg)
 
 ---
 
@@ -111,6 +117,7 @@ focus-market-intelligence/
 ├── README.en.md                   # English showcase
 ├── LICENSE                        # MIT License
 ├── docs/                          # Diátaxis Technical Documentation (Bilingual)
+│   ├── assets/screenshots/        # High-resolution report panel screenshots
 │   ├── README.md                  # Language selector hub
 │   ├── pt-br/                     # Portuguese documentation
 │   │   └── README.md              # Portuguese Diátaxis index

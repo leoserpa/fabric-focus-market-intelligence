@@ -63,6 +63,7 @@ focus-market-intelligence/
 ├── README.md                      # Portuguese repository showcase
 ├── README.en.md                   # English repository showcase
 ├── docs/                          # Technical documentation (Diataxis)
+│   ├── assets/screenshots/        # High-resolution report panel screenshots
 │   ├── README.md                  # Language selector hub
 │   ├── pt-br/                     # Portuguese documentation suite
 │   └── en/                        # English documentation suite

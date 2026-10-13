@@ -72,16 +72,22 @@ O relatório Power BI é estruturado em três telas complementares em canvas 192
 * Trajetória histórica dos últimos 6 meses com destaque em laranja para a aceleração dos **últimos 30 dias** (janela oficial de apuração do BCB).
 * Matriz de projeções plurianuais e variações de consenso.
 
+![Painel 1 - Panorama Focus](./docs/assets/screenshots/01-panorama-focus.jpg)
+
 ### 2. Página 2: Mercado x Top 5
 * Comparativo institucional entre o **Consenso Geral do Mercado** e as **Top 5** (as 5 instituições com maior taxa de acerto histórico no ranking do BCB).
 * Análise de divergência com gráficos de dispersão condicional: identificação de viés **Hawkish** (laranja) vs **Dovish** (cinza grafite).
 * Cards de dispersão pontual com variações em pontos percentuais (Delta p.p.).
+
+![Painel 2 - Mercado x Top 5](./docs/assets/screenshots/02-mercado-top5.jpg)
 
 ### 3. Página 3: Juros e Inflação (Juro Real Ex-Ante)
 * Monitoramento da política monetária do Copom (Selic Vigente diária) e da expectativa de inflação suavizada em 12 meses (IPCA 12M).
 * Cálculo da taxa de **Juro Real Ex-Ante** calculada rigorosamente pela **Equação de Fisher**:
   $$\text{Juro Real Ex-Ante} = \left( \frac{1 + \frac{\text{Selic}}{100}}{1 + \frac{\text{IPCA}_{12M}}{100}} - 1 \right) \times 100$$
 * Bloco metodológico pedagógico explicando a formulação matemática e notas analíticas de leitura de mercado.
+
+![Painel 3 - Juros e Inflação](./docs/assets/screenshots/03-juros-inflacao.jpg)
 
 ---
 
@@ -111,6 +117,7 @@ focus-market-intelligence/
 ├── README.en.md                   # Vitrine em Inglês
 ├── LICENSE                        # Licença MIT
 ├── docs/                          # Documentação técnica Diátaxis (Bilíngue)
+│   ├── assets/screenshots/        # Capturas dos 3 painéis executivos
 │   ├── README.md                  # Seletor de idioma
 │   ├── pt-br/                     # Documentação em Português
 │   │   └── README.md              # Índice Diátaxis em Português

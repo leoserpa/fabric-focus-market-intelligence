@@ -90,6 +90,17 @@ Para popular as tabelas e transformar os dados pela primeira vez:
    * **Página 3 (Juros e inflação):** Curva contínua do Juro Real Ex-Ante pela Equação de Fisher e decisões do Copom.
 3. Verifique se o selo no canto superior direito indica a data da observação mais recente (ex: `02/10/2026`).
 
+#### Visão dos Painéis Executivos no Power BI:
+
+**Página 1: Panorama Focus**
+![Página 1 - Panorama Focus](../../assets/screenshots/01-panorama-focus.jpg)
+
+**Página 2: Mercado x Top 5**
+![Página 2 - Mercado x Top 5](../../assets/screenshots/02-mercado-top5.jpg)
+
+**Página 3: Juros e Inflação (Juro Real Ex-Ante)**
+![Página 3 - Juros e Inflação](../../assets/screenshots/03-juros-inflacao.jpg)
+
 ---
 
 ## Conclusão

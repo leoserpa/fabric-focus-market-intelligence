@@ -89,6 +89,17 @@ To populate the tables and run end-to-end data transformations:
    * **Page 3 (Interest Rates & Inflation):** Continuous ex-ante real rate curve calculated via the Fisher Equation and Copom policy decisions.
 3. Confirm that the top-right badge displays the latest observation date (e.g., `02/10/2026`).
 
+#### Executive Power BI Report Panels:
+
+**Page 1: Focus Overview (Panorama Focus)**
+![Page 1: Focus Overview](../../assets/screenshots/01-panorama-focus.jpg)
+
+**Page 2: Market Consensus vs Top 5 (Mercado x Top 5)**
+![Page 2: Market Consensus vs Top 5](../../assets/screenshots/02-mercado-top5.jpg)
+
+**Page 3: Interest Rates and Inflation (Ex-Ante Real Interest Rate)**
+![Page 3: Real Interest Rate and Inflation](../../assets/screenshots/03-juros-inflacao.jpg)
+
 ---
 
 ## Conclusion
