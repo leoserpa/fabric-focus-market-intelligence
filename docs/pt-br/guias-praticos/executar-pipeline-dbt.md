@@ -1,4 +1,4 @@
-# How-to: Executar e Testar os Modelos dbt no Microsoft Fabric
+# Guia Prático: Executar e Testar os Modelos dbt no Microsoft Fabric
 
 Este guia fornece instruções passo a passo para compilar, executar transformações e validar testes de integridade e qualidade de dados utilizando o **dbt (Data Build Tool)** integrado ao **Microsoft Fabric**.
 
@@ -79,7 +79,7 @@ Done. PASS=18 WARN=0 ERROR=0 SKIP=0 TOTAL=18
 
 ---
 
-## Resolução de Problemas Comuns (Troubleshooting)
+## Resolução de Problemas Comuns
 
 ### 1. Erro: `Source 'lakehouse_silver.silver_...' does not exist`
 * **Causa:** O notebook `nb_02_bronze_to_silver` ainda não foi executado ou a tabela Silver não foi criada no Lakehouse `lk_focus_intelligence`.

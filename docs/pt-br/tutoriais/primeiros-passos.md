@@ -1,4 +1,4 @@
-# Tutorial: Inicialização do Ambiente do Zero (Getting Started)
+# Tutorial: Inicialização do Ambiente do Zero (Primeiros Passos)
 
 Este tutorial orienta você no processo completo de replicação do projeto **Focus Market Intelligence** em um novo Workspace do **Microsoft Fabric**, desde a sincronização com o Git até a primeira execução da pipeline de dados e visualização do relatório no Power BI.
 
@@ -34,17 +34,17 @@ Antes de começar, certifique-se de ter:
 
 ---
 
-### Etapa 2: Conectar o Workspace ao Git (Source Control)
+### Etapa 2: Conectar o Workspace ao Git (Controle de Código-Fonte)
 O Microsoft Fabric possui integração nativa com o GitHub.
-1. No menu superior do seu novo workspace, clique em **Configurações do espaço de trabalho** (*Workspace settings*).
-2. Acesse a aba **Integração do Git** (*Git integration*).
+1. No menu superior do seu novo workspace, clique em **Configurações do espaço de trabalho**.
+2. Acesse a aba **Integração do Git**.
 3. Preencha as credenciais e parâmetros:
    * **Provedor:** GitHub
    * **Organização / Usuário:** Seu usuário do GitHub
    * **Repositório:** Nome do repositório clonado ou com fork
    * **Ramificação (Branch):** `main`
    * **Pasta do Git:** Digite `/fabric` *(atenção à barra inicial: os artefatos do Fabric estão dentro dessa pasta)*.
-4. Clique em **Conectar e sincronizar** (*Connect and sync*).
+4. Clique em **Conectar e sincronizar**.
 5. O Fabric exibirá a tela de sincronização inicial. Selecione a opção para carregar os artefatos da branch remota para o workspace e confirme.
 
 > **Resultado:** Os seguintes artefatos aparecerão na lista do workspace:
