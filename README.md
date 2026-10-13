@@ -2,6 +2,8 @@
 
 > **Plataforma analítica corporativa de ponta a ponta no Microsoft Fabric e dbt para monitoramento e modelagem das expectativas macroeconômicas do Banco Central do Brasil (BCB).**
 
+**Português** | [English](./README.en.md)
+
 [![Microsoft Fabric](https://img.shields.io/badge/Microsoft%20Fabric-Lakehouse%20%7C%20Warehouse%20%7C%20Direct%20Lake-0078D4?logo=microsoftazure&logoColor=white)](https://fabric.microsoft.com/)
 [![dbt Core](https://img.shields.io/badge/dbt-Core%20v1.8+-FF694B?logo=dbt&logoColor=white)](https://getdbt.com/)
 [![Power BI](https://img.shields.io/badge/Power%20BI-PBIP%20%7C%20TMDL%20%7C%20DAX-F2C811?logo=powerbi&logoColor=black)](https://powerbi.microsoft.com/)
@@ -85,17 +87,19 @@ O relatório Power BI é estruturado em três telas complementares em canvas 192
 
 ## Documentação Técnica Completa (Diátaxis Framework)
 
-A documentação aprofundada deste repositório foi construída seguindo a metodologia técnica **Diátaxis** e está organizada na pasta [`docs/`](./docs/index.md):
+A documentação aprofundada deste repositório foi construída seguindo a metodologia técnica **Diátaxis** e está disponível em dois idiomas:
 
-| Quadrante | Documento | Conteúdo |
+| Quadrante | Documento (PT-BR) | Conteúdo |
 | :--- | :--- | :--- |
-| **Tutorial** | [Getting Started](./docs/tutorials/getting-started.md) | Passo a passo para configurar o Workspace no Fabric e rodar a esteira do zero. |
-| **How-to** | [Executar Modelos dbt](./docs/how-to-guides/run-dbt-pipeline.md) | Como compilar modelos, rodar `dbt build` e validar testes de qualidade. |
-| **How-to** | [Fabric Git Integration](./docs/how-to-guides/fabric-git-sync.md) | Como versionar artefatos do Fabric e criar commits atômicos no GitHub. |
-| **Reference** | [Dicionário de Dados](./docs/reference/data-dictionary.md) | Especificação das tabelas Bronze, Silver e Gold, tipos e relacionamentos. |
-| **Reference** | [Catálogo de Medidas DAX](./docs/reference/dax-measures.md) | Fórmulas DAX, Equação de Fisher, cálculo de spreads e formatações. |
-| **Explanation** | [Arquitetura Fabric e Direct Lake](./docs/explanation/architecture.md) | Decisões técnicas: Medallion, dbt no Warehouse e Direct Lake. |
-| **Explanation** | [Metodologia Focus e Fisher](./docs/explanation/fisher-equation-methodology.md) | Apuração do BCB (Base 0 e Base 1) e matemática da taxa real. |
+| **Tutorial** | [Getting Started](./docs/pt-br/tutorials/getting-started.md) | Passo a passo para configurar o Workspace no Fabric e rodar a esteira do zero. |
+| **How-to** | [Executar Modelos dbt](./docs/pt-br/how-to-guides/run-dbt-pipeline.md) | Como compilar modelos, rodar `dbt build` e validar testes de qualidade. |
+| **How-to** | [Fabric Git Integration](./docs/pt-br/how-to-guides/fabric-git-sync.md) | Como versionar artefatos do Fabric e criar commits atômicos no GitHub. |
+| **Reference** | [Dicionário de Dados](./docs/pt-br/reference/data-dictionary.md) | Especificação das tabelas Bronze, Silver e Gold, tipos e relacionamentos. |
+| **Reference** | [Catálogo de Medidas DAX](./docs/pt-br/reference/dax-measures.md) | Fórmulas DAX, Equação de Fisher, cálculo de spreads e formatações. |
+| **Explanation** | [Arquitetura Fabric e Direct Lake](./docs/pt-br/explanation/architecture.md) | Decisões técnicas: Medallion, dbt no Warehouse e Direct Lake. |
+| **Explanation** | [Metodologia Focus e Fisher](./docs/pt-br/explanation/fisher-equation-methodology.md) | Apuração do BCB (Base 0 e Base 1) e matemática da taxa real. |
+
+*(For the English documentation suite, see [docs/en/index.md](./docs/en/index.md) or [README.en.md](./README.en.md))*.
 
 ---
 
@@ -103,14 +107,13 @@ A documentação aprofundada deste repositório foi construída seguindo a metod
 
 ```text
 focus-market-intelligence/
-├── README.md                      # Vitrine executiva do projeto
+├── README.md                      # Vitrine em Português
+├── README.en.md                   # Vitrine em Inglês
 ├── LICENSE                        # Licença MIT
-├── docs/                          # Documentação técnica Diátaxis
-│   ├── index.md                   # Índice geral da documentação
-│   ├── tutorials/                 # Tutoriais passo a passo
-│   ├── how-to-guides/             # Guias operacionais e receitas
-│   ├── reference/                 # Dicionários de dados e catálogo DAX
-│   └── explanation/               # Decisões arquiteturais e teoria econômica
+├── docs/                          # Documentação técnica Diátaxis (Bilíngue)
+│   ├── index.md                   # Seletor de idioma
+│   ├── pt-br/                     # Documentação em Português
+│   └── en/                        # Documentação em Inglês
 └── fabric/                        # Artefatos sincronizados com o Microsoft Fabric
     ├── 01 - Lakehouse/            # lk_focus_intelligence (Delta Lake)
     ├── 02 - Notebooks/            # nb_01_raw_to_bronze, nb_02_bronze_to_silver

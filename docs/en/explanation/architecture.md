@@ -1,0 +1,65 @@
+# Explanation: Data Architecture in Microsoft Fabric
+
+This document discusses architectural and conceptual design decisions behind the **Focus Market Intelligence** platform, explaining technical motivations for selecting **Microsoft Fabric**, **dbt**, and **Direct Lake** storage mode.
+
+---
+
+## The Microsoft Fabric and OneLake Paradigm
+
+Traditionally, building an end-to-end analytical pipeline involving government API ingestion, heavy data processing, dimensional modeling, and interactive BI required stitching together multiple cloud services:
+* Azure Data Factory (orchestration)
+* Azure Databricks or Synapse Spark (distributed processing)
+* Azure SQL or Snowflake (data warehousing)
+* Power BI Service (semantic models & visualization)
+
+**Microsoft Fabric** consolidates these capabilities into a single SaaS platform unified by **OneLake** (the unified analytical data lake). Every compute engine natively reads and writes open-format **Delta Lake (Parquet with transaction logs)**, eliminating data silos and redundant copies.
+
+---
+
+## Medallion Architecture (Bronze -> Silver -> Gold)
+
+We implement the standard Medallion Architecture to ensure data governance, progressive quality elevation, and complete auditability:
+
+```
+┌──────────────────┐      ┌──────────────────┐      ┌──────────────────┐
+│   BRONZE LAYER   │ ───► │   SILVER LAYER   │ ───► │    GOLD LAYER    │
+│  (Raw Ingestion) │      │ (Curated/Typed)  │      │  (Dimensional)   │
+└──────────────────┘      └──────────────────┘      └──────────────────┘
+   Lakehouse (Delta)         Lakehouse (Delta)         Warehouse (T-SQL)
+    PySpark Notebook          PySpark Notebook          dbt Core (Job)
+```
+
+### 1. Bronze Layer (Raw)
+* **Goal:** Capture raw payloads from Central Bank APIs (Olinda OData and SGS series) exactly as emitted by source endpoints, preserving full history.
+* **Tool:** PySpark Notebooks (`nb_01_raw_to_bronze`).
+* **Rationale:** In the event of schema shifts or regulatory re-audit, raw source files remain preserved in Delta Lake for zero-loss recomputation.
+
+### 2. Silver Layer (Curated and Standardized)
+* **Goal:** Perform type coercion, timestamp parsing, null handling, deduplication, and indicator normalization.
+* **Tool:** PySpark Notebooks (`nb_02_bronze_to_silver`).
+* **Rationale:** Apache Spark scales memory processing across historical series, enforcing formal schemas and temporal validations.
+
+### 3. Gold Layer (Dimensional Star Schema)
+* **Goal:** Deliver normalized facts and dimensions optimized for analytical queries.
+* **Tool:** Fabric Data Warehouse orchestrated by **dbt** (`dbt_focus_intelligence`).
+* **Rationale:** Enables standard SQL modeling, surrogate key generation (`data_sk`), clean joins, and referential integrity assertions.
+
+---
+
+## Why dbt (Data Build Tool) Inside Fabric Warehouse?
+
+Gold layer transformations are maintained in **dbt** for four essential reasons:
+1. **Analytics Code as Software:** All models are declarative, version-controlled SQL files tracked in Git.
+2. **Automated DAG Lineage:** dbt infers execution ordering automatically through `ref()` and `source()` macros.
+3. **Automated Assertion Testing:** Models enforce schema tests (`schema.yml`) validating uniqueness, non-nullability, and referential constraints prior to report consumption.
+4. **Idempotent Deployments:** Table materialization guarantees deterministic, atomic builds on each run.
+
+---
+
+## Direct Lake: Overcoming the Import vs. DirectQuery Dilemma
+
+The semantic model `sm_focus_market_intelligence` accesses Gold Warehouse tables via **Direct Lake**:
+
+* **Traditional Import Mode:** Incurs data duplication, memory footprint constraints, and scheduled refresh latency.
+* **Traditional DirectQuery:** Translates visual interactions into live SQL queries, resulting in query latency and database load.
+* **Fabric Direct Lake:** Reads columnar Parquet files directly from OneLake storage at in-memory speeds **without duplicating data into memory caches**, ensuring instant freshness upon pipeline completion.
