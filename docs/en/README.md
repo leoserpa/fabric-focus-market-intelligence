@@ -1,6 +1,6 @@
 # Technical Documentation - Focus Market Intelligence
 
-Welcome to the official technical documentation for **Focus Market Intelligence**, an end-to-end enterprise analytical platform built on **Microsoft Fabric**, **dbt**, and **Power BI**, dedicated to monitoring and modeling macroeconomic expectations published by the Central Bank of Brazil (BCB).
+Welcome to the official technical documentation for **Focus Market Intelligence**, an end-to-end Analytics Engineering project built on **Microsoft Fabric**, **dbt**, and **Power BI**, dedicated to monitoring and modeling macroeconomic expectations published by the Central Bank of Brazil (BCB).
 
 This documentation adheres strictly to the **[Diataxis](https://diataxis.fr/)** technical authoring framework, organizing technical knowledge into four distinct quadrants:
 

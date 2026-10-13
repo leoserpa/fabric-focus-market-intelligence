@@ -1,6 +1,6 @@
 # Focus Market Intelligence
 
-> **Plataforma analítica corporativa de ponta a ponta no Microsoft Fabric e dbt para monitoramento e modelagem das expectativas macroeconômicas do Banco Central do Brasil (BCB).**
+> **Projeto de Analytics Engineering de ponta a ponta no Microsoft Fabric e dbt para monitoramento e modelagem das expectativas macroeconômicas do Banco Central do Brasil (BCB).**
 
 **Português** | [English](./README.en.md)
 
@@ -17,7 +17,7 @@
 
 ## Visão Geral do Projeto
 
-O **Focus Market Intelligence** é uma solução de Engenharia de Analytics desenvolvida para transformar dados brutos das APIs abertas do Banco Central do Brasil em inteligência analítica para mesas de macroeconomia, tesourarias, fundos de investimento e diretorias executivas.
+O **Focus Market Intelligence** é um projeto prático de Engenharia de Analytics desenvolvido para coletar, estruturar e modelar dados públicos das APIs do Banco Central do Brasil, transformando projeções macroeconômicas (IPCA, Selic, PIB e Câmbio) em análises visuais acessíveis e servindo como referência de implementação de ponta a ponta com Microsoft Fabric, dbt e Power BI.
 
 O projeto resolve três desafios centrais:
 1. **Automação Contínua:** Ingestão diária automatizada de expectativas via API Olinda (OData) e taxas oficiais via SGS Séries Temporais.

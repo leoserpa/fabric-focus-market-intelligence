@@ -1,6 +1,6 @@
 # Focus Market Intelligence
 
-> **End-to-end enterprise analytics platform on Microsoft Fabric and dbt for monitoring and modeling Central Bank of Brazil (BCB) macroeconomic expectations.**
+> **End-to-end Analytics Engineering project on Microsoft Fabric and dbt for monitoring and modeling Central Bank of Brazil (BCB) macroeconomic expectations.**
 
 [Português](./README.md) | **English**
 
@@ -17,7 +17,7 @@
 
 ## Project Overview
 
-**Focus Market Intelligence** is an Analytics Engineering solution built to ingest, clean, model, and serve macroeconomic expectation data published via the Central Bank of Brazil (BCB) open APIs, delivering decision-grade market intelligence for macroeconomic research desks, treasury operations, asset managers, and executive leadership.
+**Focus Market Intelligence** is a practical Analytics Engineering project built to collect, structure, and model public data from Central Bank of Brazil APIs, turning macroeconomic forecasts (IPCA, Selic, GDP, and Exchange Rate) into accessible visual analytics and serving as an end-to-end reference implementation with Microsoft Fabric, dbt, and Power BI.
 
 The solution addresses three core business requirements:
 1. **Continuous Ingestion Pipeline:** Automated daily ingestion of macroeconomic consensus forecasts via the Olinda OData API and official interest rates through the SGS Time Series API.

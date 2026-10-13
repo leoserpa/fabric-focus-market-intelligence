@@ -1,6 +1,6 @@
 # Documentação Técnica - Focus Market Intelligence
 
-Bem-vindo à documentação técnica do projeto **Focus Market Intelligence**, uma plataforma analítica desenvolvida no **Microsoft Fabric**, **dbt** e **Power BI**, dedicada ao monitoramento e análise das expectativas macroeconômicas do Banco Central do Brasil (BCB).
+Bem-vindo à documentação técnica do projeto **Focus Market Intelligence**, um projeto de Engenharia de Analytics desenvolvido no **Microsoft Fabric**, **dbt** e **Power BI**, dedicado ao monitoramento e modelagem das expectativas macroeconômicas do Banco Central do Brasil (BCB).
 
 Esta documentação segue a estrutura do framework **[Diátaxis](https://diataxis.fr/)**, dividindo o conhecimento técnico em quatro quadrantes:
 
