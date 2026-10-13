@@ -1,0 +1,128 @@
+# Focus Market Intelligence
+
+> **Plataforma analítica corporativa de ponta a ponta no Microsoft Fabric e dbt para monitoramento e modelagem das expectativas macroeconômicas do Banco Central do Brasil (BCB).**
+
+[![Microsoft Fabric](https://img.shields.io/badge/Microsoft%20Fabric-Lakehouse%20%7C%20Warehouse%20%7C%20Direct%20Lake-0078D4?logo=microsoftazure&logoColor=white)](https://fabric.microsoft.com/)
+[![dbt Core](https://img.shields.io/badge/dbt-Core%20v1.8+-FF694B?logo=dbt&logoColor=white)](https://getdbt.com/)
+[![Power BI](https://img.shields.io/badge/Power%20BI-PBIP%20%7C%20TMDL%20%7C%20DAX-F2C811?logo=powerbi&logoColor=black)](https://powerbi.microsoft.com/)
+[![Apache Spark](https://img.shields.io/badge/Apache%20Spark-PySpark%20Delta%20Lake-E25A1C?logo=apachespark&logoColor=white)](https://spark.apache.org/)
+[![Banco Central do Brasil](https://img.shields.io/badge/Dados-BCB%20Olinda%20%26%20SGS-003366)](https://dadosabertos.bcb.gov.br/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](./LICENSE)
+
+---
+
+## Visão Geral do Projeto
+
+O **Focus Market Intelligence** é uma solução de Engenharia de Analytics desenvolvida para transformar dados brutos das APIs abertas do Banco Central do Brasil em inteligência analítica para mesas de macroeconomia, tesourarias, fundos de investimento e diretorias executivas.
+
+O projeto resolve três desafios centrais:
+1. **Automação Contínua:** Ingestão diária automatizada de expectativas via API Olinda (OData) e taxas oficiais via SGS Séries Temporais.
+2. **Governança com Medallion e dbt:** Tratamento progressivo da qualidade dos dados e modelagem dimensional estrela com testes rigorosos de integridade.
+3. **Storytelling Executivo e Rigor Econômico:** Relatório no Power BI com design sóbrio (1920x1440), aplicação da **Equação de Fisher** sem aproximações lineares distorcidas e análise comparativa institucional entre o **Consenso Geral** e o grupo **Top 5**.
+
+---
+
+## Arquitetura de Dados End-to-End
+
+```mermaid
+flowchart LR
+    subgraph Ingestao ["1. Ingestão e Fontes"]
+        A[API BCB Olinda OData]
+        B[API SGS Série 432]
+    end
+
+    subgraph FabricLakehouse ["2. Lakehouse Medallion"]
+        C[nb_01_raw_to_bronze]
+        D[(Bronze Delta Lake)]
+        E[nb_02_bronze_to_silver]
+        F[(Silver Delta Lake)]
+    end
+
+    subgraph FabricWarehouse ["3. Warehouse e dbt"]
+        G[dbt Core Job]
+        H[(Gold Star Schema)]
+    end
+
+    subgraph Consumo ["4. Consumo e BI"]
+        I[Modelo Semântico Direct Lake]
+        J[Power BI Report 3 Páginas]
+    end
+
+    A --> C
+    B --> C
+    C --> D
+    D --> E
+    E --> F
+    F --> G
+    G --> H
+    H --> I
+    I --> J
+```
+
+---
+
+## Estrutura do Dashboard (3 Painéis Executivos)
+
+O relatório Power BI é estruturado em três telas complementares em canvas 1920x1440:
+
+### 1. Página 1: Panorama Focus
+* Visão macro ampla dos 4 pilares da economia: **IPCA**, **Taxa Selic**, **PIB** e **Câmbio (USD/BRL)** para 2026.
+* Trajetória histórica dos últimos 6 meses com destaque em laranja para a aceleração dos **últimos 30 dias** (janela oficial de apuração do BCB).
+* Matriz de projeções plurianuais e variações de consenso.
+
+### 2. Página 2: Mercado x Top 5
+* Comparativo institucional entre o **Consenso Geral do Mercado** e as **Top 5** (as 5 instituições com maior taxa de acerto histórico no ranking do BCB).
+* Análise de divergência com gráficos de dispersão condicional: identificação de viés **Hawkish** (laranja) vs **Dovish** (cinza grafite).
+* Cards de dispersão pontual com variações em pontos percentuais (Delta p.p.).
+
+### 3. Página 3: Juros e Inflação (Juro Real Ex-Ante)
+* Monitoramento da política monetária do Copom (Selic Vigente diária) e da expectativa de inflação suavizada em 12 meses (IPCA 12M).
+* Cálculo da taxa de **Juro Real Ex-Ante** calculada rigorosamente pela **Equação de Fisher**:
+  $$\text{Juro Real Ex-Ante} = \left( \frac{1 + \frac{\text{Selic}}{100}}{1 + \frac{\text{IPCA}_{12M}}{100}} - 1 \right) \times 100$$
+* Bloco metodológico pedagógico explicando a formulação matemática e notas analíticas de leitura de mercado.
+
+---
+
+## Documentação Técnica Completa (Diátaxis Framework)
+
+A documentação aprofundada deste repositório foi construída seguindo a metodologia técnica **Diátaxis** e está organizada na pasta [`docs/`](./docs/index.md):
+
+| Quadrante | Documento | Conteúdo |
+| :--- | :--- | :--- |
+| **Tutorial** | [Getting Started](./docs/tutorials/getting-started.md) | Passo a passo para configurar o Workspace no Fabric e rodar a esteira do zero. |
+| **How-to** | [Executar Modelos dbt](./docs/how-to-guides/run-dbt-pipeline.md) | Como compilar modelos, rodar `dbt build` e validar testes de qualidade. |
+| **How-to** | [Fabric Git Integration](./docs/how-to-guides/fabric-git-sync.md) | Como versionar artefatos do Fabric e criar commits atômicos no GitHub. |
+| **Reference** | [Dicionário de Dados](./docs/reference/data-dictionary.md) | Especificação das tabelas Bronze, Silver e Gold, tipos e relacionamentos. |
+| **Reference** | [Catálogo de Medidas DAX](./docs/reference/dax-measures.md) | Fórmulas DAX, Equação de Fisher, cálculo de spreads e formatações. |
+| **Explanation** | [Arquitetura Fabric e Direct Lake](./docs/explanation/architecture.md) | Decisões técnicas: Medallion, dbt no Warehouse e Direct Lake. |
+| **Explanation** | [Metodologia Focus e Fisher](./docs/explanation/fisher-equation-methodology.md) | Apuração do BCB (Base 0 e Base 1) e matemática da taxa real. |
+
+---
+
+## Estrutura de Diretórios
+
+```text
+focus-market-intelligence/
+├── README.md                      # Vitrine executiva do projeto
+├── LICENSE                        # Licença MIT
+├── docs/                          # Documentação técnica Diátaxis
+│   ├── index.md                   # Índice geral da documentação
+│   ├── tutorials/                 # Tutoriais passo a passo
+│   ├── how-to-guides/             # Guias operacionais e receitas
+│   ├── reference/                 # Dicionários de dados e catálogo DAX
+│   └── explanation/               # Decisões arquiteturais e teoria econômica
+└── fabric/                        # Artefatos sincronizados com o Microsoft Fabric
+    ├── 01 - Lakehouse/            # lk_focus_intelligence (Delta Lake)
+    ├── 02 - Notebooks/            # nb_01_raw_to_bronze, nb_02_bronze_to_silver
+    ├── 03 - Pipelines/            # pl_focus_market_intelligence (Data Pipeline)
+    ├── 04 - Warehouse/            # wh_focus_intelligence (SQL Server / T-SQL)
+    ├── 05 - dbt/                  # dbt_focus_intelligence (Modelos dimensionais)
+    ├── 06 - Semantic Models/      # sm_focus_market_intelligence (TMDL / Direct Lake)
+    └── 07 - Reports/              # rpt_focus_market_intelligence (PBIP Power BI)
+```
+
+---
+
+## Autor
+
+**Leonardo Serpa**
