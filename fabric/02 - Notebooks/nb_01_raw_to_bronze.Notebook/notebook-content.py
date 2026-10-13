@@ -214,7 +214,7 @@ CATALOGO_BRONZE = [
         "endpoint": "ExpectativasMercadoAnuais",
         "filtro": "Indicador eq 'IPCA' or Indicador eq 'Selic' or Indicador eq 'Câmbio' or Indicador eq 'PIB Total'",
         "chave": ["Data", "Indicador", "IndicadorDetalhe", "DataReferencia", "baseCalculo"],
-        "coluna_data": "Data", "formato_data": "%Y-%m-%d", "max_dias_atraso": 10,
+        "coluna_data": "Data", "formato_data": "%Y-%m-%d", "max_dias_atraso": 30,
         "tabela_destino": "bronze_focus_anuais"
     },
     {
@@ -223,7 +223,7 @@ CATALOGO_BRONZE = [
         "endpoint": "ExpectativasMercadoTop5Anuais",
         "filtro": "tipoCalculo eq 'C' and (Indicador eq 'IPCA' or Indicador eq 'Selic' or Indicador eq 'Câmbio')",
         "chave": ["Data", "Indicador", "DataReferencia", "tipoCalculo"],
-        "coluna_data": "Data", "formato_data": "%Y-%m-%d", "max_dias_atraso": 10,
+        "coluna_data": "Data", "formato_data": "%Y-%m-%d", "max_dias_atraso": 30,
         "tabela_destino": "bronze_focus_top5_anuais"
     },
     {
@@ -232,7 +232,7 @@ CATALOGO_BRONZE = [
         "endpoint": "ExpectativasMercadoInflacao12Meses",
         "filtro": "Indicador eq 'IPCA' and Suavizada eq 'S'",
         "chave": ["Data", "Indicador", "Suavizada", "baseCalculo"],
-        "coluna_data": "Data", "formato_data": "%Y-%m-%d", "max_dias_atraso": 10,
+        "coluna_data": "Data", "formato_data": "%Y-%m-%d", "max_dias_atraso": 30,
         "tabela_destino": "bronze_focus_inflacao_12m"
     },
     {
@@ -241,7 +241,7 @@ CATALOGO_BRONZE = [
         "codigo_sgs": 432,
         "data_inicial": "04/06/1999",
         "chave": ["data"],
-        "coluna_data": "data", "formato_data": "%d/%m/%Y", "max_dias_atraso": 5,
+        "coluna_data": "data", "formato_data": "%d/%m/%Y", "max_dias_atraso": 30,
         "tabela_destino": "bronze_sgs_selic_meta"
     }
 ]

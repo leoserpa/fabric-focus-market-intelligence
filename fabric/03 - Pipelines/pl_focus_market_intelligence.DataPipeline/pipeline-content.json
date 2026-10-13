@@ -5,7 +5,8 @@
         "type": "TridentNotebook",
         "typeProperties": {
           "notebookId": "b68183be-00c0-9da7-4eb7-f6413bf15152",
-          "workspaceId": "00000000-0000-0000-0000-000000000000"
+          "workspaceId": "00000000-0000-0000-0000-000000000000",
+          "sessionTag": "sessao_focus"
         },
         "policy": {
           "timeout": "0.12:00:00",
@@ -21,7 +22,8 @@
         "type": "TridentNotebook",
         "typeProperties": {
           "notebookId": "d9f262ca-4a82-ba4b-4055-3c969d2ffa5f",
-          "workspaceId": "00000000-0000-0000-0000-000000000000"
+          "workspaceId": "00000000-0000-0000-0000-000000000000",
+          "sessionTag": "sessao_focus"
         },
         "policy": {
           "timeout": "0.12:00:00",
@@ -33,7 +35,7 @@
         "name": "curacao_silver_delta",
         "dependsOn": [
           {
-            "activity": "ingestao_bronze_bcb",
+            "activity": "Wait1",
             "dependencyConditions": [
               "Succeeded"
             ]
@@ -62,6 +64,21 @@
         "dependsOn": [
           {
             "activity": "curacao_silver_delta",
+            "dependencyConditions": [
+              "Succeeded"
+            ]
+          }
+        ]
+      },
+      {
+        "type": "Wait",
+        "typeProperties": {
+          "waitTimeInSeconds": 60
+        },
+        "name": "Wait1",
+        "dependsOn": [
+          {
+            "activity": "ingestao_bronze_bcb",
             "dependencyConditions": [
               "Succeeded"
             ]
