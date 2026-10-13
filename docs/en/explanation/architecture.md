@@ -20,13 +20,31 @@ Traditionally, building an end-to-end analytical pipeline involving government A
 
 We implement the standard Medallion Architecture to ensure data governance, progressive quality elevation, and complete auditability:
 
-```
-┌──────────────────┐      ┌──────────────────┐      ┌──────────────────┐
-│   BRONZE LAYER   │ ───► │   SILVER LAYER   │ ───► │    GOLD LAYER    │
-│  (Raw Ingestion) │      │ (Curated/Typed)  │      │  (Dimensional)   │
-└──────────────────┘      └──────────────────┘      └──────────────────┘
-   Lakehouse (Delta)         Lakehouse (Delta)         Warehouse (T-SQL)
-    PySpark Notebook          PySpark Notebook          dbt Core (Job)
+```mermaid
+flowchart LR
+    subgraph Bronze ["1. Bronze Layer (Raw)"]
+        direction TB
+        B1["PySpark Notebook<br/>nb_01_raw_to_bronze"]
+        B2[("Lakehouse Delta Lake<br/>lk_focus_intelligence")]
+        B1 --> B2
+    end
+
+    subgraph Silver ["2. Silver Layer (Curated)"]
+        direction TB
+        S1["PySpark Notebook<br/>nb_02_bronze_to_silver"]
+        S2[("Lakehouse Delta Lake<br/>silver_*")]
+        S1 --> S2
+    end
+
+    subgraph Gold ["3. Gold Layer (Dimensional)"]
+        direction TB
+        G1["dbt Core Job<br/>T-SQL / dbt build"]
+        G2[("Fabric Warehouse<br/>wh_focus_intelligence")]
+        G1 --> G2
+    end
+
+    B2 --> S1
+    S2 --> G1
 ```
 
 ### 1. Bronze Layer (Raw)

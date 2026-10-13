@@ -20,13 +20,31 @@ O **Microsoft Fabric** unifica todas essas capacidades sob uma única plataforma
 
 Adotamos a arquitetura Medallion para garantir governança, qualidade progressiva e rastreabilidade:
 
-```
-┌──────────────────┐      ┌──────────────────┐      ┌──────────────────┐
-│   CAMADA BRONZE  │ ───► │  CAMADA SILVER   │ ───► │   CAMADA GOLD    │
-│   (Ingestão Raw) │      │ (Curada/Tipada)  │      │  (Dimensional)   │
-└──────────────────┘      └──────────────────┘      └──────────────────┘
-   Lakehouse (Delta)         Lakehouse (Delta)         Warehouse (T-SQL)
-    PySpark Notebook          PySpark Notebook          dbt Core (Job)
+```mermaid
+flowchart LR
+    subgraph Bronze ["1. Camada Bronze (Raw)"]
+        direction TB
+        B1["PySpark Notebook<br/>nb_01_raw_to_bronze"]
+        B2[("Lakehouse Delta Lake<br/>lk_focus_intelligence")]
+        B1 --> B2
+    end
+
+    subgraph Silver ["2. Camada Silver (Curada)"]
+        direction TB
+        S1["PySpark Notebook<br/>nb_02_bronze_to_silver"]
+        S2[("Lakehouse Delta Lake<br/>silver_*")]
+        S1 --> S2
+    end
+
+    subgraph Gold ["3. Camada Gold (Dimensional)"]
+        direction TB
+        G1["dbt Core Job<br/>T-SQL / dbt build"]
+        G2[("Fabric Warehouse<br/>wh_focus_intelligence")]
+        G1 --> G2
+    end
+
+    B2 --> S1
+    S2 --> G1
 ```
 
 ### 1. Camada Bronze (Raw)

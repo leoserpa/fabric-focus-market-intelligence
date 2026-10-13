@@ -6,24 +6,42 @@ This document provides the formal technical specification for all tables, column
 
 ## Data Lineage
 
-```
-[BCB Olinda API] ──► nb_01_raw_to_bronze ──► Bronze (Delta Lake)
-[SGS 432 Series] ──► nb_01_raw_to_bronze ──► Bronze (Delta Lake)
-                                                    │
-                                                    ▼
-                                            nb_02_bronze_to_silver
-                                                    │
-                                                    ▼
-                                            Silver (Delta Lake)
-                                                    │
-                                                    ▼
-                                            dbt_focus_intelligence
-                                                    │
-                                                    ▼
-                                            Gold (Fabric Warehouse)
-                                                    │
-                                                    ▼ (Direct Lake)
-                                            sm_focus_market_intelligence
+```mermaid
+flowchart TD
+    subgraph Sources ["Data Sources"]
+        API1["BCB Olinda API (OData)"]
+        API2["BCB SGS Series 432 (Selic)"]
+    end
+
+    subgraph Ingestion ["Bronze Ingestion"]
+        NB1["nb_01_raw_to_bronze<br/>PySpark"]
+        BRONZE[("Bronze Delta Lake<br/>bronze_focus_*<br/>bronze_sgs_*")]
+    end
+
+    subgraph Curation ["Silver Curation"]
+        NB2["nb_02_bronze_to_silver<br/>PySpark"]
+        SILVER[("Silver Delta Lake<br/>silver_focus_*<br/>silver_sgs_*")]
+    end
+
+    subgraph Modeling ["Gold Modeling"]
+        DBT["dbt_focus_intelligence<br/>dbt Core / T-SQL"]
+        GOLD[("Fabric Warehouse<br/>gold.dim_*<br/>gold.fct_*")]
+    end
+
+    subgraph Consumption ["Analytics & BI"]
+        SM["Direct Lake Semantic Model<br/>sm_focus_market_intelligence"]
+        RPT["Power BI Report (PBIP)<br/>rpt_focus_market_intelligence"]
+    end
+
+    API1 --> NB1
+    API2 --> NB1
+    NB1 --> BRONZE
+    BRONZE --> NB2
+    NB2 --> SILVER
+    SILVER --> DBT
+    DBT --> GOLD
+    GOLD -.->|Direct Lake| SM
+    SM --> RPT
 ```
 
 ---
