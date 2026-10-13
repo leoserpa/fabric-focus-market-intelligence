@@ -63,9 +63,9 @@ focus-market-intelligence/
 ├── README.md                      # Vitrine executiva em Português
 ├── README.en.md                   # Vitrine executiva em Inglês
 ├── docs/                          # Documentação técnica oficial (Diátaxis)
-│   ├── index.md                   # Hub de seleção de idiomas
+│   ├── README.md                  # Hub de seleção de idiomas
 │   ├── pt-br/                     # Documentação em Português
-│   │   ├── index.md               # Este índice geral
+│   │   ├── README.md              # Este índice geral
 │   │   ├── tutoriais/             # Tutoriais passo a passo
 │   │   ├── guias-praticos/        # Guias operacionais e receitas
 │   │   ├── referencia/            # Dicionários de dados e medidas DAX

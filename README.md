@@ -99,7 +99,7 @@ A documentação aprofundada deste repositório foi construída seguindo a metod
 | **Explicação** | [Arquitetura Fabric e Direct Lake](./docs/pt-br/explicacao/arquitetura-fabric.md) | Decisões técnicas: Medallion, dbt no Warehouse e Direct Lake. |
 | **Explicação** | [Metodologia Focus e Fisher](./docs/pt-br/explicacao/metodologia-focus-e-fisher.md) | Apuração do BCB (Base 0 e Base 1) e matemática da taxa real. |
 
-*(Para a suíte de documentação em inglês, consulte [docs/en/index.md](./docs/en/index.md) ou [README.en.md](./README.en.md))*.
+*(Para a suíte de documentação em inglês, consulte [docs/en/README.md](./docs/en/README.md) ou [README.en.md](./README.en.md))*.
 
 ---
 
@@ -111,9 +111,11 @@ focus-market-intelligence/
 ├── README.en.md                   # Vitrine em Inglês
 ├── LICENSE                        # Licença MIT
 ├── docs/                          # Documentação técnica Diátaxis (Bilíngue)
-│   ├── index.md                   # Seletor de idioma
+│   ├── README.md                  # Seletor de idioma
 │   ├── pt-br/                     # Documentação em Português
+│   │   └── README.md              # Índice Diátaxis em Português
 │   └── en/                        # Documentação em Inglês
+│       └── README.md              # Índice Diátaxis em Inglês
 └── fabric/                        # Artefatos sincronizados com o Microsoft Fabric
     ├── 01 - Lakehouse/            # lk_focus_intelligence (Delta Lake)
     ├── 02 - Notebooks/            # nb_01_raw_to_bronze, nb_02_bronze_to_silver

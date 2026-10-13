@@ -99,7 +99,7 @@ Detailed technical documentation for this repository is structured according to 
 | **Explanation** | [Fabric Architecture and Direct Lake](./docs/en/explanation/architecture.md) | Deep dive into technical design decisions: Medallion layers, dbt in Fabric Warehouse, and Direct Lake mode. |
 | **Explanation** | [Focus Methodology and Fisher Equation](./docs/en/explanation/fisher-equation-methodology.md) | BCB surveying methodology (Base 0 vs Base 1), aggregation rules, and ex-ante interest rate theory. |
 
-*(Para a documentação completa em Português, consulte [docs/pt-br/index.md](./docs/pt-br/index.md) ou [README.md](./README.md))*.
+*(Para a documentação completa em Português, consulte [docs/pt-br/README.md](./docs/pt-br/README.md) ou [README.md](./README.md))*.
 
 ---
 
@@ -111,9 +111,11 @@ focus-market-intelligence/
 ├── README.en.md                   # English showcase
 ├── LICENSE                        # MIT License
 ├── docs/                          # Diátaxis Technical Documentation (Bilingual)
-│   ├── index.md                   # Language selector hub
+│   ├── README.md                  # Language selector hub
 │   ├── pt-br/                     # Portuguese documentation
+│   │   └── README.md              # Portuguese Diátaxis index
 │   └── en/                        # English documentation
+│       └── README.md              # English Diátaxis index
 └── fabric/                        # Microsoft Fabric Git-integrated workspace items
     ├── 01 - Lakehouse/            # lk_focus_intelligence (Delta Lake)
     ├── 02 - Notebooks/            # nb_01_raw_to_bronze, nb_02_bronze_to_silver

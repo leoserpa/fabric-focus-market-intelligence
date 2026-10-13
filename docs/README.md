@@ -2,8 +2,8 @@
 
 Select your preferred language / Selecione o seu idioma de preferência:
 
-* [English (EN)](./en/index.md) - Full technical documentation following the Diataxis framework.
-* [Português (PT-BR)](./pt-br/index.md) - Documentação técnica completa seguindo o framework Diátaxis.
+* [English (EN)](./en/README.md) - Full technical documentation following the Diataxis framework.
+* [Português (PT-BR)](./pt-br/README.md) - Documentação técnica completa seguindo o framework Diátaxis.
 
 ---
 
