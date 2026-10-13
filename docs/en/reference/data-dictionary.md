@@ -98,7 +98,9 @@ Official target Selic rate decided by the Copom committee from SGS series 432.
 
 ## 3. Gold Layer (Dimensional Data Warehouse)
 
-Persisted inside Data Warehouse `wh_focus_intelligence` under the `gold` schema, materialized by dbt and consumed via **Direct Lake**:
+Persisted inside Data Warehouse `wh_focus_intelligence` under the `gold` schema, materialized by dbt and consumed via **Direct Lake** structured as a clean Star Schema:
+
+![Star Schema Semantic Model Diagram](../../assets/screenshots/04-modelo-semantico-star-schema.png)
 
 ### 3.1 `dim_calendario` (Time Dimension)
 Continuous daily calendar from 2000-01-01 through 2035-12-31.

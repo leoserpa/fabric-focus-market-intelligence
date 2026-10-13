@@ -63,6 +63,12 @@ flowchart LR
     I --> J
 ```
 
+### Direct Lake Semantic Model (Star Schema)
+
+The dimensional and fact tables created by dbt in the Fabric Warehouse are served by the `sm_focus_market_intelligence` semantic model in **Direct Lake** mode, structured as a clean Star Schema:
+
+![Direct Lake Star Schema Semantic Model](./docs/assets/screenshots/04-modelo-semantico-star-schema.png)
+
 ---
 
 ## Dashboard Structure (3 Executive Reports)

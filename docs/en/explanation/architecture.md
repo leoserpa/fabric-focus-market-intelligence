@@ -62,6 +62,8 @@ flowchart LR
 * **Tool:** Fabric Data Warehouse orchestrated by **dbt** (`dbt_focus_intelligence`).
 * **Rationale:** Enables standard SQL modeling, surrogate key generation (`data_sk`), clean joins, and referential integrity assertions.
 
+![Star Schema Semantic Model](../../assets/screenshots/04-modelo-semantico-star-schema.png)
+
 ---
 
 ## Why dbt (Data Build Tool) Inside Fabric Warehouse?

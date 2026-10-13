@@ -98,7 +98,9 @@ Taxa Selic Meta oficial fixada pelo Copom na série SGS 432.
 
 ## 3. Camada Gold (Data Warehouse Dimensional)
 
-Armazenada no Data Warehouse `wh_focus_intelligence` sob o schema `gold` (ou `dbo_gold`), modelada pelo dbt e servida via **Direct Lake**:
+Armazenada no Data Warehouse `wh_focus_intelligence` sob o schema `gold` (ou `dbo_gold`), modelada pelo dbt e servida via **Direct Lake** com arquitetura em Esquema Estrela (*Star Schema*):
+
+![Diagrama do Modelo Semântico Star Schema](../../assets/screenshots/04-modelo-semantico-star-schema.png)
 
 ### 3.1 `dim_calendario` (Dimensão de Tempo)
 Gera um calendário contínuo de 01/01/2000 a 31/12/2035.

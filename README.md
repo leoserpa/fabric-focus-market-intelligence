@@ -63,6 +63,12 @@ flowchart LR
     I --> J
 ```
 
+### Modelo Semântico Direct Lake (Star Schema)
+
+As tabelas dimensionais e de fatos geradas pelo dbt no Fabric Warehouse são consumidas pelo modelo semântico `sm_focus_market_intelligence` em modo **Direct Lake**, organizadas em um Esquema Estrela puro:
+
+![Modelo Semântico Star Schema](./docs/assets/screenshots/04-modelo-semantico-star-schema.png)
+
 ---
 
 ## Estrutura do Dashboard (3 Painéis Executivos)

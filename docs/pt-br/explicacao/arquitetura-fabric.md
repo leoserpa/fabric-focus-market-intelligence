@@ -62,6 +62,8 @@ flowchart LR
 * **Ferramenta:** Fabric Data Warehouse gerenciado pelo **dbt** (`dbt_focus_intelligence`).
 * **Justificativa:** Permite consultas analíticas com SQL padrão, cálculo de surrogates keys (`data_sk`), joins consistentes e testes formais de integridade referencial.
 
+![Modelo Semântico Star Schema](../../assets/screenshots/04-modelo-semantico-star-schema.png)
+
 ---
 
 ## Por que dbt (Data Build Tool) no Fabric Warehouse?
