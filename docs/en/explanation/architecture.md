@@ -43,7 +43,8 @@ flowchart LR
         G1 --> G2
     end
 
-    B2 --> S1
+    B2 --> W["aguardar_liberacao_spark<br/>Wait 60s (Spark Buffer)"]
+    W --> S1
     S2 --> G1
 ```
 

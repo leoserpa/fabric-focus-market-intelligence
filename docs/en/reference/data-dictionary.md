@@ -36,7 +36,8 @@ flowchart TD
     API1 --> NB1
     API2 --> NB1
     NB1 --> BRONZE
-    BRONZE --> NB2
+    BRONZE --> WAIT["aguardar_liberacao_spark<br/>Spark Stabilization Buffer (60s)"]
+    WAIT --> NB2
     NB2 --> SILVER
     SILVER --> DBT
     DBT --> GOLD

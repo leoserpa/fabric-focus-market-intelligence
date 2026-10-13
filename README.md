@@ -38,6 +38,7 @@ flowchart LR
     subgraph FabricLakehouse ["2. Lakehouse Medallion"]
         C[nb_01_raw_to_bronze]
         D[(Bronze Delta Lake)]
+        W["aguardar_liberacao_spark<br/>(Buffer 60s)"]
         E[nb_02_bronze_to_silver]
         F[(Silver Delta Lake)]
     end
@@ -55,7 +56,8 @@ flowchart LR
     A --> C
     B --> C
     C --> D
-    D --> E
+    D --> W
+    W --> E
     E --> F
     F --> G
     G --> H
