@@ -15,6 +15,21 @@
 
 ---
 
+## Demonstração do Projeto
+
+> Demonstração prática do ambiente Microsoft Fabric e da navegação no relatório analítico do Power BI:
+
+
+
+
+
+https://github.com/user-attachments/assets/858eec4a-a40c-4bdc-b7bf-0dc520fc25ea
+
+
+
+---
+
+
 ## Visão Geral do Projeto
 
 O **Focus Market Intelligence** é um projeto prático de Engenharia de Analytics desenvolvido para coletar, estruturar e modelar dados públicos das APIs do Banco Central do Brasil, transformando projeções macroeconômicas (IPCA, Selic, PIB e Câmbio) em análises visuais acessíveis e servindo como referência de implementação de ponta a ponta com Microsoft Fabric, dbt e Power BI.
