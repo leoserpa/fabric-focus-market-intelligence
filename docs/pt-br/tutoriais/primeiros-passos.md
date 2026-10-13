@@ -56,6 +56,11 @@ O Microsoft Fabric possui integração nativa com o GitHub.
 > * `sm_focus_market_intelligence` (Semantic Model)
 > * `rpt_focus_market_intelligence` (Power BI Report)
 
+#### Exibição de Linhagem do Workspace (Lineage View)
+Ao alternar a visualização do workspace para a **Exibição de Linhagem** (*Lineage View*), você verá a topologia de conexão entre os artefatos sincronizados:
+
+![Exibição de Linhagem do Workspace no Microsoft Fabric](../../assets/screenshots/05-linhagem-workspace-fabric.png)
+
 ---
 
 ### Etapa 3: Executar a Pipeline de Ingestão e Processamento

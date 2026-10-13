@@ -44,6 +44,9 @@ flowchart TD
     SM --> RPT
 ```
 
+#### Operational Workspace Lineage (Lineage View)
+![Operational Workspace Lineage in Microsoft Fabric](../../assets/screenshots/05-linhagem-workspace-fabric.png)
+
 ---
 
 ## 1. Bronze Layer (Raw Ingestion)

@@ -55,6 +55,11 @@ Microsoft Fabric supports bidirectional Git integration:
 > * `sm_focus_market_intelligence` (Semantic Model)
 > * `rpt_focus_market_intelligence` (Power BI Report)
 
+#### Workspace Lineage View
+Switching the workspace perspective to **Lineage View** displays the topology connecting all synchronized items:
+
+![Workspace Lineage View in Microsoft Fabric](../../assets/screenshots/05-linhagem-workspace-fabric.png)
+
 ---
 
 ### Step 3: Run the Ingestion and Processing Pipeline

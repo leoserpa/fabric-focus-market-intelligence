@@ -44,6 +44,9 @@ flowchart TD
     SM --> RPT
 ```
 
+#### Topologia Operacional no Fabric (Lineage View)
+![Linhagem Operacional no Microsoft Fabric](../../assets/screenshots/05-linhagem-workspace-fabric.png)
+
 ---
 
 ## 1. Camada Bronze (Ingestão Raw)

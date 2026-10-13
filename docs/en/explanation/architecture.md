@@ -83,3 +83,18 @@ The semantic model `sm_focus_market_intelligence` accesses Gold Warehouse tables
 * **Traditional Import Mode:** Incurs data duplication, memory footprint constraints, and scheduled refresh latency.
 * **Traditional DirectQuery:** Translates visual interactions into live SQL queries, resulting in query latency and database load.
 * **Fabric Direct Lake:** Reads columnar Parquet files directly from OneLake storage at in-memory speeds **without duplicating data into memory caches**, ensuring instant freshness upon pipeline completion.
+
+---
+
+## Operational Lineage in Microsoft Fabric (Lineage View)
+
+Below is the actual operational lineage graph of the artifacts within the Microsoft Fabric workspace:
+
+![Operational Workspace Lineage in Microsoft Fabric](../../assets/screenshots/05-linhagem-workspace-fabric.png)
+
+### Understanding the Lineage Topology and Direct Lake
+
+Reviewing the Fabric lineage view highlights two essential architectural characteristics:
+1. **Pipeline Orchestration:** The `pl_focus_market_intelligence` pipeline orchestrates the sequential execution of ingestion (`nb_01_raw_to_bronze`), curation (`nb_02_bronze_to_silver`), and dimensional modeling (`dbt_focus_intelligence`).
+2. **dbt T-SQL Materialization:** dbt connects to the Data Warehouse (`wh_focus_intelligence`) via standard T-SQL database connections to materialize Gold tables. The Fabric visual lineage tracker does not introspect external dynamic SQL executions as declarative UI dependencies.
+3. **Direct Lake Consumption:** The semantic model `sm_focus_market_intelligence` reads Delta tables from the Warehouse natively in Direct Lake mode. Consequently, no legacy dataset refresh task is needed at the pipeline's end, ensuring immediate analytical availability.
