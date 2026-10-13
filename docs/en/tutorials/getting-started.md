@@ -67,10 +67,13 @@ To populate the tables and run end-to-end data transformations:
 1. From the workspace item list, open the pipeline **`pl_focus_market_intelligence`**.
 2. In the top toolbar, click **Run**.
 3. The pipeline will execute the following activities sequentially:
-   * **Activity 1:** Runs `nb_01_raw_to_bronze` (ingests data from BCB Olinda API and SGS 432 series into Bronze Delta tables).
-   * **Activity 2:** Runs `nb_02_bronze_to_silver` (cleans, types, deduplicates, and standardizes into Silver Delta tables).
-   * **Activity 3:** Triggers `dbt_focus_intelligence` (builds the Gold dimensional star schema inside the Warehouse).
-4. Wait until all activities display a green **Succeeded** status.
+   * **Activity 1 (`ingestao_bronze_bcb`):** Runs `nb_01_raw_to_bronze` (ingests data from BCB Olinda API and SGS 432 series with a 30-day lookback window into Bronze Delta tables).
+   * **Activity 2 (`aguardar_liberacao_spark`):** 60-second Wait activity acting as a stabilization buffer for Spark session deallocation and capacity release in Microsoft Fabric, preventing capacity contention (HTTP 430) on shared F-SKUs/Trial capacities.
+   * **Activity 3 (`curacao_silver_delta`):** Runs `nb_02_bronze_to_silver` (cleans, types, deduplicates, and standardizes into Silver Delta tables).
+   * **Activity 4 (`modelagem_gold_dbt`):** Triggers `dbt_focus_intelligence` (compiles and materializes the Gold dimensional star schema inside the Warehouse via T-SQL and validates schema tests).
+4. Wait until all activities display a green **Succeeded** status:
+
+![Successful Pipeline Execution in Microsoft Fabric](../../assets/screenshots/06-execucao-pipeline-fabric.png)
 
 ---
 

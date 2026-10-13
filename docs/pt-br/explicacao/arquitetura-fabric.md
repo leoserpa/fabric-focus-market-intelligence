@@ -95,6 +95,6 @@ Abaixo está a exibição real de linhagem operacional dos artefatos dentro do w
 ### Compreendendo a Topologia e o Direct Lake
 
 Ao analisar a visualização de linhagem do Fabric, observam-se duas características arquiteturais importantes:
-1. **Orquestração pelo Pipeline:** O pipeline `pl_focus_market_intelligence` comanda a execução sequencial dos notebooks de ingestão (`nb_01_raw_to_bronze`), curadoria (`nb_02_bronze_to_silver`) e o trabalho de transformação (`dbt_focus_intelligence`).
+1. **Orquestração pelo Pipeline:** O pipeline `pl_focus_market_intelligence` comanda a execução sequencial dos notebooks de ingestão (`nb_01_raw_to_bronze`), uma atividade de espera de 60 segundos (`aguardar_liberacao_spark`) para desalocação limpa de sessões Spark e prevenção de contenção de capacidade (HTTP 430), a curadoria Silver (`nb_02_bronze_to_silver`) e o trabalho de transformação dimensional Gold (`dbt_focus_intelligence`).
 2. **Materialização T-SQL do dbt:** O dbt se conecta ao Data Warehouse (`wh_focus_intelligence`) via T-SQL para materializar as tabelas Gold. Como essa operação é realizada por conexão de banco de dados, o motor visual do Fabric não rastreia comandos SQL dinâmicos como dependências declarativas de interface.
 3. **Consumo Direto com Direct Lake:** O modelo semântico `sm_focus_market_intelligence` consome as tabelas Delta do Warehouse diretamente em Direct Lake. Por esse motivo, não é necessária uma atividade tradicional de atualização (*Dataset Refresh*) ao final do pipeline, garantindo disponibilidade analítica imediata.

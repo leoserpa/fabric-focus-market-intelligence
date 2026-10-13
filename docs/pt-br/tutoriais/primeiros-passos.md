@@ -68,10 +68,13 @@ Para popular as tabelas e transformar os dados pela primeira vez:
 1. Na lista de itens do workspace, clique na pipeline **`pl_focus_market_intelligence`**.
 2. No menu superior da pipeline, clique no botão **Executar** (*Run*).
 3. A pipeline executará as etapas na seguinte ordem automatizada:
-   * **Atividade 1:** Executa o notebook `nb_01_raw_to_bronze` (consome a API Olinda do BCB e a série SGS 432, gravando na camada Bronze).
-   * **Atividade 2:** Executa o notebook `nb_02_bronze_to_silver` (limpa tipos de dados, formata datas e deduplica registros para a camada Silver).
-   * **Atividade 3:** Dispara o job do dbt `dbt_focus_intelligence` (executa os modelos dimensionais e grava as tabelas Gold no Warehouse).
-4. Aguarde até que todas as atividades apresentem status de êxito (*Succeeded*).
+   * **Atividade 1 (`ingestao_bronze_bcb`):** Executa o notebook `nb_01_raw_to_bronze` (consome a API Olinda do BCB e a série SGS 432 com janela de tolerância de 30 dias, gravando as tabelas brutas no Lakehouse Bronze).
+   * **Atividade 2 (`aguardar_liberacao_spark`):** Atividade de espera (*Wait*) de 60 segundos. Atua como buffer de estabilização para desalocação de nós e liberação de capacidade de computação Spark no Microsoft Fabric, mitigando concorrência e saturação de capacidade (erro HTTP 430) em capacidades F/Trial.
+   * **Atividade 3 (`curacao_silver_delta`):** Executa o notebook `nb_02_bronze_to_silver` (padroniza tipagens, formata datas, aplica deduplicação e regras de negócio para o Lakehouse Silver).
+   * **Atividade 4 (`modelagem_gold_dbt`):** Dispara o job do dbt `dbt_focus_intelligence` (compila e materializa o esquema estrela dimensional no Data Warehouse via T-SQL e executa a suíte de testes de integridade).
+4. Aguarde até que todas as atividades apresentem status de êxito (*Succeeded*):
+
+![Execução Bem-Sucedida da Pipeline no Microsoft Fabric](../../assets/screenshots/06-execucao-pipeline-fabric.png)
 
 ---
 
