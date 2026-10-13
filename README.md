@@ -91,15 +91,15 @@ A documentação aprofundada deste repositório foi construída seguindo a metod
 
 | Quadrante | Documento (PT-BR) | Conteúdo |
 | :--- | :--- | :--- |
-| **Tutorial** | [Getting Started](./docs/pt-br/tutorials/getting-started.md) | Passo a passo para configurar o Workspace no Fabric e rodar a esteira do zero. |
-| **How-to** | [Executar Modelos dbt](./docs/pt-br/how-to-guides/run-dbt-pipeline.md) | Como compilar modelos, rodar `dbt build` e validar testes de qualidade. |
-| **How-to** | [Fabric Git Integration](./docs/pt-br/how-to-guides/fabric-git-sync.md) | Como versionar artefatos do Fabric e criar commits atômicos no GitHub. |
-| **Reference** | [Dicionário de Dados](./docs/pt-br/reference/data-dictionary.md) | Especificação das tabelas Bronze, Silver e Gold, tipos e relacionamentos. |
-| **Reference** | [Catálogo de Medidas DAX](./docs/pt-br/reference/dax-measures.md) | Fórmulas DAX, Equação de Fisher, cálculo de spreads e formatações. |
-| **Explanation** | [Arquitetura Fabric e Direct Lake](./docs/pt-br/explanation/architecture.md) | Decisões técnicas: Medallion, dbt no Warehouse e Direct Lake. |
-| **Explanation** | [Metodologia Focus e Fisher](./docs/pt-br/explanation/fisher-equation-methodology.md) | Apuração do BCB (Base 0 e Base 1) e matemática da taxa real. |
+| **Tutorial** | [Guia de Inicialização](./docs/pt-br/tutorials/getting-started.md) | Passo a passo para configurar o Workspace no Fabric e rodar a esteira do zero. |
+| **Guia Prático** | [Executar Modelos dbt](./docs/pt-br/how-to-guides/run-dbt-pipeline.md) | Como compilar modelos, rodar `dbt build` e validar testes de qualidade. |
+| **Guia Prático** | [Integração Git no Fabric](./docs/pt-br/how-to-guides/fabric-git-sync.md) | Como versionar artefatos do Fabric e criar commits atômicos no GitHub. |
+| **Referência** | [Dicionário de Dados](./docs/pt-br/reference/data-dictionary.md) | Especificação das tabelas Bronze, Silver e Gold, tipos e relacionamentos. |
+| **Referência** | [Catálogo de Medidas DAX](./docs/pt-br/reference/dax-measures.md) | Fórmulas DAX, Equação de Fisher, cálculo de spreads e formatações. |
+| **Explicação** | [Arquitetura Fabric e Direct Lake](./docs/pt-br/explanation/architecture.md) | Decisões técnicas: Medallion, dbt no Warehouse e Direct Lake. |
+| **Explicação** | [Metodologia Focus e Fisher](./docs/pt-br/explanation/fisher-equation-methodology.md) | Apuração do BCB (Base 0 e Base 1) e matemática da taxa real. |
 
-*(For the English documentation suite, see [docs/en/index.md](./docs/en/index.md) or [README.en.md](./README.en.md))*.
+*(Para a suíte de documentação em inglês, consulte [docs/en/index.md](./docs/en/index.md) ou [README.en.md](./README.en.md))*.
 
 ---
 
