@@ -1,5 +1,5 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
   "name": "d89e755a09bb6ce568d6",
   "position": {
     "x": 73.333333333333343,
@@ -155,6 +155,13 @@
                   "Value": "12D"
                 }
               }
+            },
+            "labelPosition": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Under'"
+                }
+              }
             }
           }
         },
@@ -190,7 +197,7 @@
             "labelPosition": {
               "expr": {
                 "Literal": {
-                  "Value": "'Under'"
+                  "Value": "'Above'"
                 }
               }
             },
@@ -991,6 +998,20 @@
               }
             },
             "Property": "Ponteiro Mercado"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "c243736c2390b5347817",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "_Medidas"
+              }
+            },
+            "Property": "Divergência Top 5 Spread"
           }
         },
         "type": "Advanced"

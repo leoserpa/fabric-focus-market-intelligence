@@ -35,7 +35,7 @@
         "name": "curacao_silver_delta",
         "dependsOn": [
           {
-            "activity": "Wait1",
+            "activity": "aguardar_liberacao_spark",
             "dependencyConditions": [
               "Succeeded"
             ]
@@ -63,7 +63,7 @@
         "name": "modelagem_gold_dbt",
         "dependsOn": [
           {
-            "activity": "curacao_silver_delta",
+            "activity": "aguardar_sql_endpoint",
             "dependencyConditions": [
               "Succeeded"
             ]
@@ -75,10 +75,55 @@
         "typeProperties": {
           "waitTimeInSeconds": 60
         },
-        "name": "Wait1",
+        "name": "aguardar_liberacao_spark",
         "dependsOn": [
           {
             "activity": "ingestao_bronze_bcb",
+            "dependencyConditions": [
+              "Succeeded"
+            ]
+          }
+        ]
+      },
+      {
+        "type": "Wait",
+        "typeProperties": {
+          "waitTimeInSeconds": 90
+        },
+        "name": "aguardar_sql_endpoint",
+        "dependsOn": [
+          {
+            "activity": "curacao_silver_delta",
+            "dependencyConditions": [
+              "Succeeded"
+            ]
+          }
+        ]
+      },
+      {
+        "type": "PBISemanticModelRefresh",
+        "typeProperties": {
+          "method": "POST",
+          "groupId": "217c128f-7b83-4127-989b-4052ea6fff03",
+          "datasetId": "a6a473f8-66da-45ca-abf2-dc4736cd97d6",
+          "commitMode": "Transactional",
+          "waitOnCompletion": true,
+          "operationType": "SemanticModelRefresh"
+        },
+        "externalReferences": {
+          "connection": "1a288277-61f9-49e1-8ffe-5e877c3f3bbe"
+        },
+        "policy": {
+          "timeout": "0.12:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureInput": false,
+          "secureOutput": false
+        },
+        "name": "Semantic model refresh1",
+        "dependsOn": [
+          {
+            "activity": "modelagem_gold_dbt",
             "dependencyConditions": [
               "Succeeded"
             ]

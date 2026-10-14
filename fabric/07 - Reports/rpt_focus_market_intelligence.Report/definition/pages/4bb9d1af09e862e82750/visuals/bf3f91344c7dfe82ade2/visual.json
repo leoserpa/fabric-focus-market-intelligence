@@ -1,12 +1,12 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
   "name": "bf3f91344c7dfe82ade2",
   "position": {
-    "x": 984,
-    "y": 934,
+    "x": 985,
+    "y": 935,
     "z": 3000,
     "height": 320,
-    "width": 862,
+    "width": 860,
     "tabOrder": 3000
   },
   "visual": {
@@ -118,7 +118,7 @@
             "labelPosition": {
               "expr": {
                 "Literal": {
-                  "Value": "'Above'"
+                  "Value": "'Under'"
                 }
               }
             },
@@ -145,6 +145,13 @@
               "expr": {
                 "Literal": {
                   "Value": "true"
+                }
+              }
+            },
+            "labelDensity": {
+              "expr": {
+                "Literal": {
+                  "Value": "50L"
                 }
               }
             }
