@@ -15,6 +15,20 @@
 
 ---
 
+## Project Demonstration
+
+> Walkthrough recording demonstrating the end-to-end data pipeline in Microsoft Fabric and analytical exploration in Power BI:
+
+
+
+
+
+https://github.com/user-attachments/assets/df2bc9ad-a9ae-4379-a35d-eb41de5831ca
+
+
+
+---
+
 ## Project Overview
 
 **Focus Market Intelligence** is a practical Analytics Engineering project built to collect, structure, and model public data from Central Bank of Brazil APIs, turning macroeconomic forecasts (IPCA, Selic, GDP, and Exchange Rate) into accessible visual analytics and serving as an end-to-end reference implementation with Microsoft Fabric, dbt, and Power BI.
