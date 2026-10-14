@@ -70,9 +70,11 @@ Para popular as tabelas e transformar os dados pela primeira vez:
 3. A pipeline executará as etapas na seguinte ordem automatizada:
    * **Atividade 1 (`ingestao_bronze_bcb`):** Executa o notebook `nb_01_raw_to_bronze` (consome a API Olinda do BCB e a série SGS 432 com janela de tolerância de 30 dias, gravando as tabelas brutas no Lakehouse Bronze).
    * **Atividade 2 (`aguardar_liberacao_spark`):** Atividade de espera (*Wait*) de 60 segundos. Atua como buffer de estabilização para desalocação de nós e liberação de capacidade de computação Spark no Microsoft Fabric, mitigando concorrência e saturação de capacidade (erro HTTP 430) em capacidades F/Trial.
-   * **Atividade 3 (`curacao_silver_delta`):** Executa o notebook `nb_02_bronze_to_silver` (padroniza tipagens, formata datas, aplica deduplicação e regras de negócio para o Lakehouse Silver).
-   * **Atividade 4 (`modelagem_gold_dbt`):** Dispara o job do dbt `dbt_focus_intelligence` (compila e materializa o esquema estrela dimensional no Data Warehouse via T-SQL e executa a suíte de testes de integridade).
-4. Aguarde até que todas as atividades apresentem status de êxito (*Succeeded*):
+   * **Atividade 3 (`curacao_silver_delta`):** Executa o notebook `nb_02_bronze_to_silver` (padroniza tipagens, formata datas, aplica deduplicação e regras de negócio para o Lakehouse Silver Delta).
+   * **Atividade 4 (`aguardar_sql_endpoint`):** Atividade de espera (*Wait*) de 90 segundos. Permite que as transações Delta recém-gravadas no OneLake sejam indexadas de forma assíncrona pelo SQL Analytics Endpoint antes do início das consultas pelo dbt.
+   * **Atividade 5 (`modelagem_gold_dbt`):** Dispara o job do dbt `dbt_focus_intelligence` (compila e materializa o esquema estrela dimensional no Data Warehouse via T-SQL e executa a suíte de testes de integridade).
+   * **Atividade 6 (`refresh_modelo_semantico` / `Semantic model refresh1`):** Dispara a atualização nativa do modelo semântico `sm_focus_market_intelligence`, invalidando o cache Direct Lake para disponibilizar os dados mais recentes imediatamente no relatório Power BI.
+4. Aguarde até que todas as 6 atividades apresentem status de êxito (*Succeeded*):
 
 ![Execução Bem-Sucedida da Pipeline no Microsoft Fabric](../../assets/screenshots/06-execucao-pipeline-fabric.png)
 

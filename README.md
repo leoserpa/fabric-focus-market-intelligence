@@ -15,21 +15,6 @@
 
 ---
 
-## Demonstração do Projeto
-
-> Demonstração prática do ambiente Microsoft Fabric e da navegação no relatório analítico do Power BI:
-
-
-
-
-
-https://github.com/user-attachments/assets/858eec4a-a40c-4bdc-b7bf-0dc520fc25ea
-
-
-
----
-
-
 ## Visão Geral do Projeto
 
 O **Focus Market Intelligence** é um projeto prático de Engenharia de Analytics desenvolvido para coletar, estruturar e modelar dados públicos das APIs do Banco Central do Brasil, transformando projeções macroeconômicas (IPCA, Selic, PIB e Câmbio) em análises visuais acessíveis e servindo como referência de implementação de ponta a ponta com Microsoft Fabric, dbt e Power BI.
@@ -53,9 +38,10 @@ flowchart LR
     subgraph FabricLakehouse ["2. Lakehouse Medallion"]
         C[nb_01_raw_to_bronze]
         D[(Bronze Delta Lake)]
-        W["aguardar_liberacao_spark<br/>(Buffer 60s)"]
+        W1["aguardar_liberacao_spark<br/>(Buffer 60s)"]
         E[nb_02_bronze_to_silver]
         F[(Silver Delta Lake)]
+        W2["aguardar_sql_endpoint<br/>(Buffer 90s)"]
     end
 
     subgraph FabricWarehouse ["3. Warehouse e dbt"]
@@ -64,6 +50,7 @@ flowchart LR
     end
 
     subgraph Consumo ["4. Consumo e BI"]
+        R["refresh_modelo_semantico<br/>(Direct Lake Refresh)"]
         I[Modelo Semântico Direct Lake]
         J[Power BI Report 3 Páginas]
     end
@@ -71,14 +58,29 @@ flowchart LR
     A --> C
     B --> C
     C --> D
-    D --> W
-    W --> E
+    D --> W1
+    W1 --> E
     E --> F
-    F --> G
+    F --> W2
+    W2 --> G
     G --> H
-    H --> I
+    H --> R
+    R --> I
     I --> J
 ```
+
+### Orquestração Automatizada no Microsoft Fabric Data Pipeline
+
+A esteira completa de engenharia de dados é orquestrada pelo pipeline `pl_focus_market_intelligence`, contendo 6 atividades automatizadas de ponta a ponta:
+
+1. **`ingestao_bronze_bcb`**: Notebook PySpark que consome as APIs Olinda e SGS do Banco Central.
+2. **`aguardar_liberacao_spark`**: Espera de 60s para desalocação de nós Spark e prevenção de contenção de capacidade (HTTP 430).
+3. **`curacao_silver_delta`**: Notebook PySpark de limpeza, tipagem e deduplicação Delta.
+4. **`aguardar_sql_endpoint`**: Espera de 90s para indexação e sincronização de metadados no SQL Analytics Endpoint.
+5. **`modelagem_gold_dbt`**: Job do dbt Core executando `dbt build` no Warehouse via T-SQL.
+6. **`refresh_modelo_semantico`**: Atualização nativa do modelo semântico para invalidação do cache Direct Lake.
+
+![Execução do Pipeline no Microsoft Fabric](./docs/assets/screenshots/06-execucao-pipeline-fabric.png)
 
 ### Modelo Semântico Direct Lake (Star Schema)
 

@@ -15,20 +15,6 @@
 
 ---
 
-## Project Demonstration
-
-> Walkthrough recording demonstrating the end-to-end data pipeline in Microsoft Fabric and analytical exploration in Power BI:
-
-
-
-
-
-https://github.com/user-attachments/assets/417228c8-44f6-4240-89cb-3866df95593a
-
-
-
----
-
 ## Project Overview
 
 **Focus Market Intelligence** is a practical Analytics Engineering project built to collect, structure, and model public data from Central Bank of Brazil APIs, turning macroeconomic forecasts (IPCA, Selic, GDP, and Exchange Rate) into accessible visual analytics and serving as an end-to-end reference implementation with Microsoft Fabric, dbt, and Power BI.
@@ -52,9 +38,10 @@ flowchart LR
     subgraph FabricLakehouse ["2. Lakehouse Medallion"]
         C[nb_01_raw_to_bronze]
         D[(Bronze Delta Lake)]
-        W["aguardar_liberacao_spark<br/>(60s Spark Buffer)"]
+        W1["aguardar_liberacao_spark<br/>(60s Spark Buffer)"]
         E[nb_02_bronze_to_silver]
         F[(Silver Delta Lake)]
+        W2["aguardar_sql_endpoint<br/>(90s SQL Buffer)"]
     end
 
     subgraph FabricWarehouse ["3. Warehouse and dbt"]
@@ -63,6 +50,7 @@ flowchart LR
     end
 
     subgraph Consumption ["4. Analytics and BI"]
+        R["refresh_modelo_semantico<br/>(Direct Lake Refresh)"]
         I[Direct Lake Semantic Model]
         J[Power BI 3-Page Report]
     end
@@ -70,14 +58,29 @@ flowchart LR
     A --> C
     B --> C
     C --> D
-    D --> W
-    W --> E
+    D --> W1
+    W1 --> E
     E --> F
-    F --> G
+    F --> W2
+    W2 --> G
     G --> H
-    H --> I
+    H --> R
+    R --> I
     I --> J
 ```
+
+### Automated Orchestration via Microsoft Fabric Data Pipeline
+
+The entire analytics engineering lifecycle is governed by the `pl_focus_market_intelligence` data pipeline across 6 automated stages:
+
+1. **`ingestao_bronze_bcb`**: PySpark Notebook pulling raw Central Bank Olinda and SGS APIs into Delta.
+2. **`aguardar_liberacao_spark`**: 60-second stabilization wait to deallocate Spark compute nodes and prevent HTTP 430 capacity throttling.
+3. **`curacao_silver_delta`**: PySpark Notebook performing cleaning, type validation, and Delta deduplication.
+4. **`aguardar_sql_endpoint`**: 90-second wait buffer ensuring asynchronous Delta metadata indexing on the Lakehouse SQL Analytics Endpoint.
+5. **`modelagem_gold_dbt`**: dbt Core job executing `dbt build` against the Fabric Warehouse over T-SQL.
+6. **`refresh_modelo_semantico`**: Native semantic model refresh activity invalidating Direct Lake cache for immediate dashboard responsiveness.
+
+![Pipeline Execution in Microsoft Fabric](./docs/assets/screenshots/06-execucao-pipeline-fabric.png)
 
 ### Direct Lake Semantic Model (Star Schema)
 

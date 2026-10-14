@@ -43,9 +43,18 @@ flowchart LR
         G1 --> G2
     end
 
-    B2 --> W["aguardar_liberacao_spark<br/>Espera 60s (Buffer Spark)"]
-    W --> S1
-    S2 --> G1
+    subgraph Consumo ["4. Camada Semântica & BI"]
+        direction TB
+        R1["Semantic Model Refresh<br/>Invalidação Direct Lake"]
+        R2["Power BI Report (PBIP)<br/>sm_focus_market_intelligence"]
+        R1 --> R2
+    end
+
+    B2 --> W1["aguardar_liberacao_spark<br/>Espera 60s (Buffer Spark)"]
+    W1 --> S1
+    S2 --> W2["aguardar_sql_endpoint<br/>Espera 90s (Buffer SQL Endpoint)"]
+    W2 --> G1
+    G2 --> R1
 ```
 
 ### 1. Camada Bronze (Raw)
@@ -93,9 +102,22 @@ Abaixo está a exibição real de linhagem operacional dos artefatos dentro do w
 
 ![Exibição de Linhagem do Workspace no Microsoft Fabric](../../assets/screenshots/05-linhagem-workspace-fabric.png)
 
-### Compreendendo a Topologia e o Direct Lake
+### Compreendendo a Topologia e as 6 Etapas do Pipeline
 
-Ao analisar a visualização de linhagem do Fabric, observam-se duas características arquiteturais importantes:
-1. **Orquestração pelo Pipeline:** O pipeline `pl_focus_market_intelligence` comanda a execução sequencial dos notebooks de ingestão (`nb_01_raw_to_bronze`), uma atividade de espera de 60 segundos (`aguardar_liberacao_spark`) para desalocação limpa de sessões Spark e prevenção de contenção de capacidade (HTTP 430), a curadoria Silver (`nb_02_bronze_to_silver`) e o trabalho de transformação dimensional Gold (`dbt_focus_intelligence`).
+Ao analisar a esteira completa e a orquestração do Fabric, observam-se três características arquiteturais centrais:
+
+1. **Orquestração pelo Pipeline (`pl_focus_market_intelligence`):** A pipeline comanda a execução sequencial de 6 atividades automatizadas:
+   * **`ingestao_bronze_bcb`**: Ingestão Spark das APIs do BCB no Lakehouse Bronze.
+   * **`aguardar_liberacao_spark`**: Espera de 60s para desalocação de nós Spark e prevenção de contenção de capacidade (HTTP 430).
+   * **`curacao_silver_delta`**: Curadoria e enriquecimento Spark no Lakehouse Silver Delta.
+   * **`aguardar_sql_endpoint`**: Espera de 90s para sincronização assíncrona dos metadados Delta no SQL Analytics Endpoint do Lakehouse antes da execução do dbt.
+   * **`modelagem_gold_dbt`**: Materialização dimensional Gold via dbt Core conectado ao Warehouse por T-SQL.
+   * **`refresh_modelo_semantico`**: Invalidação nativa de cache Direct Lake e refresh do modelo semântico (`sm_focus_market_intelligence`).
 2. **Materialização T-SQL do dbt:** O dbt se conecta ao Data Warehouse (`wh_focus_intelligence`) via T-SQL para materializar as tabelas Gold. Como essa operação é realizada por conexão de banco de dados, o motor visual do Fabric não rastreia comandos SQL dinâmicos como dependências declarativas de interface.
-3. **Consumo Direto com Direct Lake:** O modelo semântico `sm_focus_market_intelligence` consome as tabelas Delta do Warehouse diretamente em Direct Lake. Por esse motivo, não é necessária uma atividade tradicional de atualização (*Dataset Refresh*) ao final do pipeline, garantindo disponibilidade analítica imediata.
+3. **Invalidação e Atualização no Direct Lake:** Embora o Direct Lake leia arquivos Delta/Parquet sem importação tradicional, os metadados em memória do modelo semântico retêm ponteiros para snapshots anteriores. A atividade final de atualização do modelo semântico (*Semantic Model Refresh*) invalida o cache instantaneamente (~28s), garantindo que as páginas do relatório exibam as datas e valores mais recentes imediatamente após a conclusão da carga.
+
+### Execução Operacional do Pipeline de Dados
+
+Abaixo, a evidência de execução bem-sucedida das 6 atividades sequenciais orquestradas no Microsoft Fabric:
+
+![Execução Bem-Sucedida da Pipeline no Microsoft Fabric](../../assets/screenshots/06-execucao-pipeline-fabric.png)

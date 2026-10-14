@@ -43,9 +43,18 @@ flowchart LR
         G1 --> G2
     end
 
-    B2 --> W["aguardar_liberacao_spark<br/>Wait 60s (Spark Buffer)"]
-    W --> S1
-    S2 --> G1
+    subgraph Consumption ["4. Semantic & BI Layer"]
+        direction TB
+        R1["Semantic Model Refresh<br/>Direct Lake Invalidation"]
+        R2["Power BI Report (PBIP)<br/>sm_focus_market_intelligence"]
+        R1 --> R2
+    end
+
+    B2 --> W1["aguardar_liberacao_spark<br/>Wait 60s (Spark Buffer)"]
+    W1 --> S1
+    S2 --> W2["aguardar_sql_endpoint<br/>Wait 90s (SQL Endpoint Buffer)"]
+    W2 --> G1
+    G2 --> R1
 ```
 
 ### 1. Bronze Layer (Raw)
@@ -93,9 +102,22 @@ Below is the actual operational lineage graph of the artifacts within the Micros
 
 ![Operational Workspace Lineage in Microsoft Fabric](../../assets/screenshots/05-linhagem-workspace-fabric.png)
 
-### Understanding the Lineage Topology and Direct Lake
+### Understanding the Lineage Topology and the 6 Pipeline Stages
 
-Reviewing the Fabric lineage view highlights two essential architectural characteristics:
-1. **Pipeline Orchestration:** The `pl_focus_market_intelligence` pipeline orchestrates the sequential execution of ingestion (`nb_01_raw_to_bronze`), a 60-second stabilization wait activity (`aguardar_liberacao_spark`) for clean Spark session deallocation and capacity contention mitigation (HTTP 430), Silver curation (`nb_02_bronze_to_silver`), and Gold dimensional modeling (`dbt_focus_intelligence`).
+Reviewing the Fabric pipeline and lineage highlights three foundational architectural pillars:
+
+1. **Pipeline Orchestration (`pl_focus_market_intelligence`):** The pipeline commands 6 automated, sequential activities:
+   * **`ingestao_bronze_bcb`**: PySpark ingestion pulling Central Bank APIs into Bronze Delta tables.
+   * **`aguardar_liberacao_spark`**: 60-second stabilization buffer for clean Spark compute deallocation and HTTP 430 capacity throttling prevention.
+   * **`curacao_silver_delta`**: PySpark curation, typing, deduplication, and quality enforcement into Silver Delta.
+   * **`aguardar_sql_endpoint`**: 90-second wait buffer ensuring asynchronous Delta metadata indexing on the Lakehouse SQL Analytics Endpoint prior to dbt queries.
+   * **`modelagem_gold_dbt`**: Dimensional star schema compilation and assertions via dbt Core connected to Warehouse over T-SQL.
+   * **`refresh_modelo_semantico`**: Native semantic model refresh activity invalidating Direct Lake cache on `sm_focus_market_intelligence`.
 2. **dbt T-SQL Materialization:** dbt connects to the Data Warehouse (`wh_focus_intelligence`) via standard T-SQL database connections to materialize Gold tables. The Fabric visual lineage tracker does not introspect external dynamic SQL executions as declarative UI dependencies.
-3. **Direct Lake Consumption:** The semantic model `sm_focus_market_intelligence` reads Delta tables from the Warehouse natively in Direct Lake mode. Consequently, no legacy dataset refresh task is needed at the pipeline's end, ensuring immediate analytical availability.
+3. **Direct Lake Cache Invalidation:** While Direct Lake streams Delta/Parquet files directly without duplication, the in-memory tabular engine maintains pointers to earlier transaction snapshots. The final semantic model refresh activity invalidates this cache instantaneously (~28s), guaranteeing that all visual cards and charts immediately reflect the newest observations without requiring manual page reloads or polling.
+
+### Operational Pipeline Execution
+
+Below is the execution evidence of the 6 sequential activities passing successfully in Microsoft Fabric:
+
+![Successful Pipeline Execution in Microsoft Fabric](../../assets/screenshots/06-execucao-pipeline-fabric.png)

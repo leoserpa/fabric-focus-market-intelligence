@@ -70,8 +70,10 @@ To populate the tables and run end-to-end data transformations:
    * **Activity 1 (`ingestao_bronze_bcb`):** Runs `nb_01_raw_to_bronze` (ingests data from BCB Olinda API and SGS 432 series with a 30-day lookback window into Bronze Delta tables).
    * **Activity 2 (`aguardar_liberacao_spark`):** 60-second Wait activity acting as a stabilization buffer for Spark session deallocation and capacity release in Microsoft Fabric, preventing capacity contention (HTTP 430) on shared F-SKUs/Trial capacities.
    * **Activity 3 (`curacao_silver_delta`):** Runs `nb_02_bronze_to_silver` (cleans, types, deduplicates, and standardizes into Silver Delta tables).
-   * **Activity 4 (`modelagem_gold_dbt`):** Triggers `dbt_focus_intelligence` (compiles and materializes the Gold dimensional star schema inside the Warehouse via T-SQL and validates schema tests).
-4. Wait until all activities display a green **Succeeded** status:
+   * **Activity 4 (`aguardar_sql_endpoint`):** 90-second Wait activity allowing newly committed Delta Parquet files in OneLake to be asynchronously indexed by the Lakehouse SQL Analytics Endpoint before dbt executes.
+   * **Activity 5 (`modelagem_gold_dbt`):** Triggers `dbt_focus_intelligence` (compiles and materializes the Gold dimensional star schema inside the Warehouse via T-SQL and validates schema tests).
+   * **Activity 6 (`refresh_modelo_semantico` / `Semantic model refresh1`):** Triggers native semantic model refresh on `sm_focus_market_intelligence` to invalidate Direct Lake cache and display latest data on the report immediately.
+4. Wait until all 6 activities display a green **Succeeded** status:
 
 ![Successful Pipeline Execution in Microsoft Fabric](../../assets/screenshots/06-execucao-pipeline-fabric.png)
 

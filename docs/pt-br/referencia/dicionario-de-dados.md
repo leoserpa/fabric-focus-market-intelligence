@@ -29,6 +29,7 @@ flowchart TD
     end
 
     subgraph Consumo ["Consumo Analítico"]
+        REFRESH["refresh_modelo_semantico<br/>Invalidação Direct Lake (28s)"]
         SM["Modelo Semântico Direct Lake<br/>sm_focus_market_intelligence"]
         RPT["Relatório Power BI (PBIP)<br/>rpt_focus_market_intelligence"]
     end
@@ -36,12 +37,14 @@ flowchart TD
     API1 --> NB1
     API2 --> NB1
     NB1 --> BRONZE
-    BRONZE --> WAIT["aguardar_liberacao_spark<br/>Buffer de Estabilização Spark (60s)"]
-    WAIT --> NB2
+    BRONZE --> WAIT1["aguardar_liberacao_spark<br/>Buffer de Estabilização Spark (60s)"]
+    WAIT1 --> NB2
     NB2 --> SILVER
-    SILVER --> DBT
+    SILVER --> WAIT2["aguardar_sql_endpoint<br/>Buffer de Indexação SQL Endpoint (90s)"]
+    WAIT2 --> DBT
     DBT --> GOLD
-    GOLD -.->|Direct Lake| SM
+    GOLD --> REFRESH
+    REFRESH -.->|Direct Lake| SM
     SM --> RPT
 ```
 
